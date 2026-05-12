@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>學華語幼兒識字系統</title>
+  <style>
+    body {
+      font-family: "Microsoft JhengHei", sans-serif;
+      background: #f4f9ff;
+      margin: 0;
+      padding: 0;
+      color: #333;
+    }
+
+    .container {
+      max-width: 1000px;
+      margin: auto;
+      padding: 20px;
+    }
+
+    h1, h2 {
+      text-align: center;
+    }
+
+    .card {
+      background: white;
+      border-radius: 20px;
+      padding: 20px;
+      margin-top: 20px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+
+    input, select, button {
+      width: 100%;
+      padding: 15px;
+      margin-top: 12px;
+      font-size: 20px;
+      border-radius: 12px;
+      border: 1px solid #ccc;
+      box-sizing: border-box;
+    }
+
+    button {
+      background: #4caf50;
+      color: white;
+      border: none;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    button:hover {
+      background: #43a047;
+    }
+
+    .option-btn {
+      margin-top: 15px;
+      font-size: 24px;
+      min-height: 80px;
+    }
+
+    .big-char {
+      font-size: 90px;
+      text-align: center;
+      margin: 10px 0;
+    }
+
+    .zhuyin {
+      font-size: 40px;
+      text-align: center;
+      color: #ff5722;
+    }
+
+    .image-box {
+      text-align: center;
+      margin-top: 15px;
+    }
+
+    .image-box img {
+      width: 200px;
+      border-radius: 20px;
+      cursor: pointer;
+      transition: transform 0.3s;
+    }
+
+    .image-box img:hover {
+      transform: scale(1.05);
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    .score {
+      font-size: 28px;
+      text-align: center;
+      margin-top: 20px;
+      font-weight: bold;
+    }
+
+    .correct {
+      background: #81c784 !important;
+    }
+
+    .wrong {
+      background: #ef5350 !important;
+    }
+
+    .mode-buttons {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 15px;
+    }
+
+    @media (max-width: 700px) {
+      .big-char {
+        font-size: 70px;
+      }
+
+      .zhuyin {
+        font-size: 30px;
+      }
+
+      button {
+        font-size: 18px;
+      }
+
+      .mode-buttons {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>📚 學華語幼兒識字系統</h1>
+
+    <div id="loginPage" class="card">
+      <h2>登入</h2>
+      <input type="text" id="username" placeholder="請輸入學生名字" />
+
+      <div class="mode-buttons">
+        <button onclick="startMode('learning')">🎓 學習模式</button>
+        <button onclick="startMode('quiz')">📝 測驗模式</button>
+      </div>
+    </div>
+
+    <div id="learningPage" class="card hidden">
+      <h2>🎓 學習模式</h2>
+      <div id="learningContent"></div>
+      <button onclick="nextLearning()">下一個</button>
+    </div>
+
+    <div id="quizPage" class="card hidden">
+      <h2>📝 測驗模式</h2>
+      <div id="quizContent"></div>
+      <div class="score" id="scoreText"></div>
+    </div>
+  </div>
+
+  <script>
+    const units = {
+      "第一單元": [
+        {
+          char: "人",
+          zhuyin: "ㄖㄣˊ",
+          image: "https://cdn.pixabay.com/photo/2017/01/31/13/14/cartoon-2025782_1280.png"
+        },
+        {
+          char: "口",
+          zhuyin: "ㄎㄡˇ",
+          image: "https://cdn.pixabay.com/photo/2013/07/13/12/46/mouth-160720_1280.png"
+        },
+        {
+          char: "手",
+          zhuyin: "ㄕㄡˇ",
+          image: "https://cdn.pixabay.com/photo/2014/04/03/10/32/hand-310815_1280.png"
+        },
+        {
+          char: "大",
+          zhuyin: "ㄉㄚˋ",
+          image: "https://cdn.pixabay.com/photo/2016/03/31/19/58/boy-1299650_1280.png"
+        }
+      ],
+
+      "第二單元": [
+        {
+          char: "山",
+          zhuyin: "ㄕㄢ",
+          image: "https://cdn.pixabay.com/photo/2013/07/13/13/40/mountains-161718_1280.png"
+        },
+        {
+          char: "水",
+          zhuyin: "ㄕㄨㄟˇ",
+          image: "https://cdn.pixabay.com/photo/2014/04/03/11/51/water-drop-313543_1280.png"
+        },
+        {
+          char: "日",
+          zhuyin: "ㄖˋ",
+          image: "https://cdn.pixabay.com/photo/2013/07/13/12/15/sun-159392_1280.png"
+        }
+      ],
+
+      "第三單元": [
+        {
+          char: "木",
+          zhuyin: "ㄇㄨˋ",
+          image: "https://cdn.pixabay.com/photo/2013/07/13/10/44/tree-157759_1280.png"
+        },
+        {
+          char: "花",
+          zhuyin: "ㄏㄨㄚ",
+          image: "https://cdn.pixabay.com/photo/2013/07/12/18/20/flower-153121_1280.png"
+        },
+        {
+          char: "鳥",
+          zhuyin: "ㄋㄧㄠˇ",
+          image: "https://cdn.pixabay.com/photo/2013/07/13/11/43/bird-158393_1280.png"
+        }
+      ]
+    };
+
+    let allWords = [];
+    Object.values(units).forEach(unit => {
+      allWords = allWords.concat(unit);
+    });
+
+    let currentLearningIndex = 0;
+    let currentQuizIndex = 0;
+    let score = 0;
+    let studentName = "";
+    let shuffledQuiz = [];
+
+    function speak(text) {
+      const utterance = new SpeechSynthesisUtterance(text);
+      utterance.lang = 'zh-TW';
+      speechSynthesis.speak(utterance);
+    }
+
+    function startMode(mode) {
+      studentName = document.getElementById('username').value.trim();
+
+      if (!studentName) {
+        alert('請輸入學生名字');
+        return;
+      }
+
+      localStorage.setItem('studentName', studentName);
+
+      document.getElementById('loginPage').classList.add('hidden');
+
+      if (mode === 'learning') {
+        document.getElementById('learningPage').classList.remove('hidden');
+        loadLearning();
+      } else {
+        document.getElementById('quizPage').classList.remove('hidden');
+        startQuiz();
+      }
+    }
+
+    function loadLearning() {
+      const item = allWords[currentLearningIndex];
+
+      document.getElementById('learningContent').innerHTML = `
+        <div class="big-char">${item.char}</div>
+        <div class="zhuyin">${item.zhuyin}</div>
+
+        <div class="image-box">
+          <img src="${item.image}" onclick="zoomImage('${item.image}')" />
+        </div>
+
+        <button onclick="speak('${item.char}')">🔊 播放讀音</button>
+      `;
+    }
+
+    function nextLearning() {
+      currentLearningIndex++;
+
+      if (currentLearningIndex >= allWords.length) {
+        alert('🎉 已完成全部學習內容');
+        currentLearningIndex = 0;
+      }
+
+      loadLearning();
+    }
+
+    function zoomImage(src) {
+      const newWindow = window.open('');
+      newWindow.document.write(`
+        <img src="${src}" style="width:100%;max-width:800px;display:block;margin:auto;" />
+      `);
+    }
+
+    function startQuiz() {
+      shuffledQuiz = [...allWords].sort(() => Math.random() - 0.5).slice(0, 10);
+      currentQuizIndex = 0;
+      score = 0;
+      loadQuizQuestion();
+    }
+
+    function loadQuizQuestion() {
+      if (currentQuizIndex >= shuffledQuiz.length) {
+        finishQuiz();
+        return;
+      }
+
+      const current = shuffledQuiz[currentQuizIndex];
+
+      let options = [current.char];
+
+      while (options.length < 4) {
+        const random = allWords[Math.floor(Math.random() * allWords.length)].char;
+        if (!options.includes(random)) {
+          options.push(random);
+        }
+      }
+
+      options.sort(() => Math.random() - 0.5);
+
+      let html = `
+        <div class="zhuyin">${current.zhuyin}</div>
+        <button onclick="speak('${current.char}')">🔊 播放讀音</button>
+      `;
+
+      options.forEach(opt => {
+        html += `
+          <button class="option-btn" onclick="checkAnswer(this, '${opt}', '${current.char}')">${opt}</button>
+        `;
+      });
+
+      document.getElementById('quizContent').innerHTML = html;
+      document.getElementById('scoreText').innerHTML = `第 ${currentQuizIndex + 1} / ${shuffledQuiz.length} 題`;
+    }
+
+    function checkAnswer(button, selected, correct) {
+      const buttons = document.querySelectorAll('.option-btn');
+
+      buttons.forEach(btn => btn.disabled = true);
+
+      if (selected === correct) {
+        button.classList.add('correct');
+        score++;
+      } else {
+        button.classList.add('wrong');
+
+        buttons.forEach(btn => {
+          if (btn.innerText === correct) {
+            btn.classList.add('correct');
+          }
+        });
+      }
+
+      const answerDiv = document.createElement('div');
+      answerDiv.className = 'score';
+      answerDiv.innerHTML = `✅ 正確答案：${correct}`;
+
+      document.getElementById('quizContent').appendChild(answerDiv);
+
+      setTimeout(() => {
+        currentQuizIndex++;
+        loadQuizQuestion();
+      }, 2000);
+    }
+
+
+    function finishQuiz() {
+      document.getElementById('quizContent').innerHTML = `
+        <div class="score">
+          🎉 ${studentName} 完成測驗！<br><br>
+          🏆 分數：${score} / ${shuffledQuiz.length}<br><br>
+          📖 識字數量：${score} 個
+        </div>
+
+        <button onclick="restartQuiz()">再玩一次</button>
+      `;
+
+        document.getElementById('scoreText').innerHTML = '';
+     
+        //send quiz result  to kevinzhongnz@gmail.com by email        
+        const email = 'kevinzhongnz@gmail.com';
+        const subject = '測驗成績';
+        const body = `學生:${studentName} <br>成績:${score} / ${shuffledQuiz.length} <br>識字數量:${score} 個`;     
+
+        window.location.href = `mailto:${email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+                
+
+
+
+     
+    }
+
+    function restartQuiz() {
+      startQuiz();
+    }
+  </script>
+</body>
+</html>
