@@ -378,9 +378,9 @@
      
         //send quiz result  to kevinzhongnz@gmail.com by email        
         const email = 'kevinzhongnz@gmail.com';
-        const subject = '測驗成績';
-        const body = `學生:${studentName} <br>成績:${score} / ${shuffledQuiz.length} <br>識字數量:${score} 個`;     
-
+        const subject = encodeURIComponent('學華語測驗成績');
+        //const body = `學生:${studentName} <br>成績:${score} / ${shuffledQuiz.length} <br>識字數量:${score} 個`;     
+        const body = 'test';
         window.location.href = `mailto:${email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
                 
 
