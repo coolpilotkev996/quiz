@@ -234,6 +234,8 @@
     function speak(text) {
       const utterance = new SpeechSynthesisUtterance(text);
       utterance.lang = 'zh-TW';
+      utterance.rate = 0.8; 
+      utterance.volume = 1.2;
       speechSynthesis.speak(utterance);
     }
 
@@ -371,17 +373,20 @@
           📖 識字數量：${score} 個
         </div>
 
-        <button onclick="restartQuiz()">再玩一次</button>
-        <a href="mailto:kevinzhongnz@gmail.com?subject=test&cc=&bcc=&body=test">Send result</a>
+        <button onclick="restartQuiz()">再一次</button>
       `;
 
         document.getElementById('scoreText').innerHTML = '';
+        //send email by nodemailer
+        //const email = 'kevinzhongnz@gmail.com';
+        //const subject = '學華語測驗成績';
+        //const body = `學生:${studentName} <br>成績:${score} / ${shuffledQuiz.length} <br>識字數量:${score} 個`;
+
      
         //send quiz result to teacher by email        
         const email = 'kevinzhongnz@gmail.com';
         const subject = '學華語測驗成績';
-        //const body = `學生:${studentName} <br>成績:${score} / ${shuffledQuiz.length} <br>識字數量:${score} 個`;     
-        const body = 'test';
+        const body = `學生:${studentName} <br>成績:${score} / ${shuffledQuiz.length} <br>識字數量:${score} 個`;     
         window.location.href = `mailto:${email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
                 
 
