@@ -34,9 +34,9 @@
     input, select, button {
       width: 100%;
       padding: 15px;
-      margin-top: 12px;
-      font-size: 20px;
-      border-radius: 12px;
+      margin-top: 6px;
+      font-size: 16px;
+      border-radius: 6px;
       border: 1px solid #ccc;
       box-sizing: border-box;
     }
@@ -58,15 +58,25 @@
       font-size: 24px;
       min-height: 80px;
     }
+    .action-btn {
+      margin-top: 15px;
+      font-size: 24px;
+      min-height: 80px;
+      background: lightblue;
+      color: white;
+      border: none;
+      cursor: pointer;
+      font-weight: bold;
+    }
 
     .big-char {
-      font-size: 90px;
+      font-size: 60px;
       text-align: center;
       margin: 10px 0;
     }
 
     .zhuyin {
-      font-size: 40px;
+      font-size: 20px;
       text-align: center;
       color: #ff5722;
     }
@@ -92,9 +102,9 @@
     }
 
     .score {
-      font-size: 28px;
+      font-size: 16px;
       text-align: center;
-      margin-top: 20px;
+      margin-top: 10px;
       font-weight: bold;
     }
 
@@ -112,13 +122,17 @@
       gap: 15px;
     }
 
+    .mode-buttons button {
+      font-size: 24px;
+    }
+
     @media (max-width: 700px) {
       .big-char {
-        font-size: 70px;
+        font-size: 5%;
       }
 
       .zhuyin {
-        font-size: 30px;
+        font-size: 20px;
       }
 
       button {
@@ -146,14 +160,15 @@
     </div>
 
     <div id="learningPage" class="card hidden">
-      <h2>🎓 學習模式</h2>
+      <h2><div style="width: 50%;text-align: left;float:left">🎓 學習模式</div><div style="text-align:right;width:50%;float: right;"><a href="/" style="font:50%;color:lightblue">登出</a></div></h2>
       <div id="learningContent"></div>
-      <button onclick="nextLearning()">下一個</button>
+      <button class="action-btn" onclick="nextLearning()">下一個</button>
       <div id="learnAgain"></div>
     </div>
 
     <div id="quizPage" class="card hidden">
-      <h2>📝 測驗模式</h2>
+      <h2><div style="width: 50%;text-align: left;float:left">📝 測驗模式</div><div style="text-align:right;width:50%;float: right;"><a href="/" style="font:50%;color:lightblue">登出</a></div></h2>
+      <div id="learningContent"></div>
       <div id="quizContent"></div>
       <div class="score" id="scoreText"></div>
     </div>
@@ -272,7 +287,7 @@
           <img src="${item.image}"  with="300" />
         </div>
 
-        <button onclick="speak('${item.char}')">🔊 播放讀音</button>
+        <button class="action-btn" onclick="speak('${item.char}')">🔊 播放讀音</button>
       `;
     }
 
@@ -323,7 +338,7 @@
 
       let html = `
         <div class="zhuyin">${current.zhuyin}</div>
-        <button onclick="speak('${current.char}')">🔊 播放讀音</button>
+        <button class="action-btn" onclick="speak('${current.char}')">🔊 播放讀音</button>
       `;
 
       options.forEach(opt => {
@@ -375,7 +390,7 @@
           📖 識字數量：${score} 個
         </div>
 
-        <button onclick="restartQuiz()">再一次</button>
+        <button class="action-btn" onclick="restartQuiz()">再一次</button>
       `;
 
         document.getElementById('scoreText').innerHTML = '';
