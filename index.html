@@ -234,7 +234,7 @@
     function speak(text) {
       const utterance = new SpeechSynthesisUtterance(text);
       utterance.lang = 'zh-TW';
-      utterance.rate = 0.8; 
+      utterance.rate = 0.5; 
       utterance.volume = 1.2;
       speechSynthesis.speak(utterance);
     }
