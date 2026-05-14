@@ -149,6 +149,7 @@
       <h2>🎓 學習模式</h2>
       <div id="learningContent"></div>
       <button onclick="nextLearning()">下一個</button>
+      <div id="learnAgain"></div>
     </div>
 
     <div id="quizPage" class="card hidden">
@@ -164,22 +165,22 @@
         {
           char: "人",
           zhuyin: "ㄖㄣˊ",
-          image: "https://cdn.pixabay.com/photo/2017/01/31/13/14/cartoon-2025782_1280.png"
+          image: "./images/1.png"
         },
         {
           char: "口",
           zhuyin: "ㄎㄡˇ",
-          image: "https://cdn.pixabay.com/photo/2013/07/13/12/46/mouth-160720_1280.png"
+          image: "./images/2.png"
         },
         {
           char: "手",
           zhuyin: "ㄕㄡˇ",
-          image: "https://cdn.pixabay.com/photo/2014/04/03/10/32/hand-310815_1280.png"
+          image: "./images/3.png"
         },
         {
           char: "大",
           zhuyin: "ㄉㄚˋ",
-          image: "https://cdn.pixabay.com/photo/2016/03/31/19/58/boy-1299650_1280.png"
+          image: "./images/4.png"
         }
       ],
 
@@ -187,17 +188,17 @@
         {
           char: "山",
           zhuyin: "ㄕㄢ",
-          image: "https://cdn.pixabay.com/photo/2013/07/13/13/40/mountains-161718_1280.png"
+          image: "./images/5.png"
         },
         {
           char: "水",
           zhuyin: "ㄕㄨㄟˇ",
-          image: "https://cdn.pixabay.com/photo/2014/04/03/11/51/water-drop-313543_1280.png"
+          image: "./images/6.png"
         },
         {
           char: "日",
           zhuyin: "ㄖˋ",
-          image: "https://cdn.pixabay.com/photo/2013/07/13/12/15/sun-159392_1280.png"
+          image: "./images/7.png"
         }
       ],
 
@@ -205,17 +206,17 @@
         {
           char: "木",
           zhuyin: "ㄇㄨˋ",
-          image: "https://cdn.pixabay.com/photo/2013/07/13/10/44/tree-157759_1280.png"
+          image: "./images/8.png"
         },
         {
           char: "花",
           zhuyin: "ㄏㄨㄚ",
-          image: "https://cdn.pixabay.com/photo/2013/07/12/18/20/flower-153121_1280.png"
+          image: "./images/9.png"
         },
         {
           char: "鳥",
           zhuyin: "ㄋㄧㄠˇ",
-          image: "https://cdn.pixabay.com/photo/2013/07/13/11/43/bird-158393_1280.png"
+          image: "./images/10.png"
         }
       ]
     };
@@ -268,7 +269,7 @@
         <div class="zhuyin">${item.zhuyin}</div>
 
         <div class="image-box">
-          <img src="${item.image}" onclick="zoomImage('${item.image}')" />
+          <img src="${item.image}"  with="300" />
         </div>
 
         <button onclick="speak('${item.char}')">🔊 播放讀音</button>
@@ -280,7 +281,8 @@
 
       if (currentLearningIndex >= allWords.length) {
         alert('🎉 已完成全部學習內容');
-        currentLearningIndex = 0;
+         currentLearningIndex = 0;
+      
       }
 
       loadLearning();
