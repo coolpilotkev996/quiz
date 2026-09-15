@@ -28,13 +28,13 @@ input{width:100%} button{cursor:pointer;font-weight:bold;background:#ffd800;bord
 <main>
 <section class="panel">
 <h2>Find a product</h2>
+<label for="language">Search language</label>
+<select id="language"><option>English</option><option>中文 / Chinese</option><option>日本語 / Japanese</option><option>한국어 / Korean</option><option>Español / Spanish</option></select>
 <label for="search">Product name</label>
 <input id="search" list="product-list" placeholder="e.g. milk, bread, eggs..." />
 <datalist id="product-list"></datalist>
 <div class="row" style="margin-top:8px"><button id="find">Find product</button><button id="voice">🎙 Voice</button></div>
-<label for="language">Search language</label>
-<select id="language"><option>English</option><option>中文 / Chinese</option><option>日本語 / Japanese</option><option>한국어 / Korean</option><option>Español / Spanish</option></select>
-<p class="hint">Voice search uses your browser's speech recognition when supported. This demo maps common product names to approximate locations from the uploaded store map.</p>
+<p class="hint">Voice search works best in Chrome or Edge. Allow microphone permission when prompted. If voice does not work from a local file, run the app on localhost or HTTPS. Voice search uses your browser's speech recognition when supported. This demo maps common product names to approximate locations from the uploaded store map.</p>
 <div id="result" class="result"></div>
 <div class="status" id="locationStatus">Current location: entrance / flowers area (demo position). Use “Set current location” to simulate movement.</div>
 <label for="start">Current location</label>
@@ -91,11 +91,67 @@ function find(){
 document.getElementById('find').onclick=find;
 document.getElementById('search').addEventListener('keydown',e=>{if(e.key==='Enter')find()});
 document.getElementById('setStart').onclick=()=>{current=starts[document.getElementById('start').value];document.getElementById('locationStatus').textContent='Current location updated (demo): '+document.getElementById('start').selectedOptions[0].text;find()};
-document.getElementById('voice').onclick=()=>{
- const SpeechRecognition=window.SpeechRecognition||window.webkitSpeechRecognition;
- if(!SpeechRecognition){alert('Voice recognition is not supported in this browser. Try Chrome or Edge.');return}
- const r=new SpeechRecognition();r.lang='en-NZ';r.onresult=e=>{document.getElementById('search').value=e.results[0][0].transcript;find()};r.start();
-};
+let recognition = null;
+let isListening = false;
+
+function setVoiceStatus(message, error = false) {
+  const button = document.getElementById('voice');
+  button.textContent = isListening ? '⏹ Stop listening' : '🎙 Voice';
+  button.title = message;
+  button.style.background = error ? '#ffd0d0' : (isListening ? '#b9f6c5' : '#ffd800');
+  document.getElementById('locationStatus').textContent = message;
+}
+
+function startVoiceSearch() {
+  const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+  if (!SpeechRecognition) {
+    setVoiceStatus('Voice search is not supported here. Please use Google Chrome or Microsoft Edge.', true);
+    alert('Voice search requires Google Chrome or Microsoft Edge. If you are using Safari, open this app in Chrome or Edge.');
+    return;
+  }
+  if (isListening && recognition) { recognition.stop(); return; }
+
+  recognition = new SpeechRecognition();
+  recognition.lang = document.getElementById('language').value.startsWith('中文') ? 'zh-NZ' : 'en-NZ';
+  recognition.continuous = false;
+  recognition.interimResults = true;
+  recognition.maxAlternatives = 3;
+  isListening = true;
+  setVoiceStatus('Listening… please say a product name.');
+  document.getElementById('search').placeholder = 'Listening…';
+
+  recognition.onresult = (event) => {
+    let transcript = '';
+    for (let i = event.resultIndex; i < event.results.length; i++) transcript += event.results[i][0].transcript;
+    document.getElementById('search').value = transcript.trim();
+    if (event.results[event.results.length - 1].isFinal) {
+      setVoiceStatus('Voice search complete: ' + transcript.trim());
+      find();
+    }
+  };
+  recognition.onerror = (event) => {
+    const messages = {
+      'not-allowed': 'Microphone permission was denied. Allow microphone access in your browser settings.',
+      'service-not-allowed': 'Voice recognition is blocked. Try Chrome or Edge.',
+      'no-speech': 'No speech detected. Click Voice and try again.',
+      'audio-capture': 'No microphone was found. Check your microphone connection.',
+      'network': 'Voice recognition needs an internet connection.',
+      'aborted': 'Voice search stopped.'
+    };
+    setVoiceStatus(messages[event.error] || ('Voice search error: ' + event.error), true);
+  };
+  recognition.onend = () => {
+    isListening = false;
+    recognition = null;
+    document.getElementById('search').placeholder = 'e.g. milk, bread, eggs...';
+    document.getElementById('voice').textContent = '🎙 Voice';
+    document.getElementById('voice').style.background = '#ffd800';
+  };
+  try { recognition.start(); }
+  catch (error) { isListening = false; recognition = null; setVoiceStatus('Could not start voice search. Please try again.', true); }
+}
+
+document.getElementById('voice').addEventListener('click', startVoiceSearch);
 window.addEventListener('resize',resize);img.addEventListener('load',resize);resize();
 </script>
 </body></html>
