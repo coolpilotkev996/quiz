@@ -223,14 +223,15 @@
       justify-content: space-between;
       align-items: center;
       gap: 12px;
-      margin-top: 16px;
+      margin: 16px;
     }
 
     .btn {
-      padding: 12px 28px;
+      padding: 5px 20px;
+      margin: 8px 0px;
       border-radius: 60px;
       font-weight: 600;
-      font-size: 1rem;
+      font-size: 0.6rem;
       border: none;
       cursor: pointer;
       transition: 0.15s;
@@ -593,6 +594,13 @@
 
   <!-- 測驗主面板 (初始隱藏) -->
   <div id="quizPanel" class="hidden">
+     <!-- 底部按鈕 -->
+    <div class="action-buttons">
+      <button class="btn btn-secondary" id="stopQuizBtn">⏹️ 停止測驗</button>
+      <button class="btn btn-email" id="sendEmailDuringQuizBtn">📧 寄送成績</button>
+      <button class="btn btn-primary" id="nextBtn" disabled>下一題 →</button>
+    </div>
+
     <div class="stats-bar">
       <div class="score-badge" id="scoreDisplay">得分：0</div>
       <div class="timer" id="progressDisplay">剩餘：100 題</div>
@@ -610,12 +618,7 @@
       <span>✨ 選一個注音吧</span>
     </div>
 
-    <!-- 底部按鈕 -->
-    <div class="action-buttons">
-      <button class="btn btn-secondary" id="stopQuizBtn">⏹️ 停止測驗</button>
-      <button class="btn btn-email" id="sendEmailDuringQuizBtn">📧 寄送成績</button>
-      <button class="btn btn-primary" id="nextBtn" disabled>下一題 →</button>
-    </div>
+   
   </div>
 
   <!-- 郵件區 (剛開始隱藏) -->
