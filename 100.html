@@ -569,6 +569,7 @@
   <h1>
     🐼 漢字讀音測驗
     <span>Zhuyin</span>
+    <span id="quizNameLabel"></span>
   </h1>
   <div class="teacher-note">
     ✦ 看漢字 · 選注音 · 答錯會再出現 · 可隨時暫停與恢復進度 · 隨時寄送成績 
@@ -666,9 +667,10 @@
       { char: '一', zhuyin: 'ㄧ' }, { char: '二', zhuyin: 'ㄦˋ' }, { char: '三', zhuyin: 'ㄙㄢ' },
     ];
 
-    const STORAGE_PREFIX = `quiz${quiz_name}_`;
+    const STORAGE_PREFIX = `quiz_${quiz_name}_`;
+    document.getElementById("quizNameLabel").textContent = quiz_name;
 
-    // DOM 元素
+    // DOM 元素message        
     const setupPanel = document.getElementById('setupPanel');
     const quizPanel = document.getElementById('quizPanel');
     const emailPanel = document.getElementById('emailPanel');
@@ -983,6 +985,7 @@
 
       // 建立完整的訊息內容
       const messageBody = [
+        `測驗名：${quiz_name}`,
         `學生姓名：${studentName}`,
         '',
         '--- 詳細進度 ---',
@@ -1003,6 +1006,7 @@
 
       // EmailJS 模板參數 (請確認您的 EmailJS 模板中使用這些變數名稱)
       const templateParams = {
+        quiz_name: quiz_name,
         student_name: studentName,
         status: status,
         score: score,
