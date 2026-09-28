@@ -567,7 +567,7 @@
 <body>
 <div class="app" id="app">
   <h1>
-    🐼 漢字讀音測驗
+    漢字讀音測驗
     <span>Zhuyin</span>
     <span id="quizNameLabel"></span>
   </h1>
@@ -663,9 +663,30 @@
    
     // 漢字資料 (Please update every time you want to change the quiz content or add new characters)
     const quiz_name = '100';
-    const CHARACTERS = [
-      { char: '一', zhuyin: 'ㄧ' }, { char: '二', zhuyin: 'ㄦˋ' }, { char: '三', zhuyin: 'ㄙㄢ' },
-    ];
+   const CHARACTERS = [
+  { char: '一', zhuyin: 'ㄧ' }, { char: '二', zhuyin: 'ㄦˋ' }, { char: '三', zhuyin: 'ㄙㄢ' }, { char: '四', zhuyin: 'ㄙˋ' }, { char: '五', zhuyin: 'ㄨˇ' },
+  { char: '六', zhuyin: 'ㄌㄧㄡˋ' }, { char: '七', zhuyin: 'ㄑㄧ' }, { char: '八', zhuyin: 'ㄅㄚ' }, { char: '九', zhuyin: 'ㄐㄧㄡˇ' }, { char: '十', zhuyin: 'ㄕˊ' },
+  { char: '日', zhuyin: 'ㄖˋ' }, { char: '月', zhuyin: 'ㄩㄝˋ' }, { char: '山', zhuyin: 'ㄕㄢ' }, { char: '水', zhuyin: 'ㄕㄨㄟˇ' }, { char: '人', zhuyin: 'ㄖㄣˊ' },
+  { char: '口', zhuyin: 'ㄎㄡˇ' }, { char: '上', zhuyin: 'ㄕㄤˋ' }, { char: '中', zhuyin: 'ㄓㄨㄥ' }, { char: '下', zhuyin: 'ㄒㄧㄚˋ' }, { char: '女', zhuyin: 'ㄋㄩˇ' },
+  { char: '男', zhuyin: 'ㄋㄢˊ' }, { char: '生', zhuyin: 'ㄕㄥ' }, { char: '明', zhuyin: 'ㄇㄧㄥˊ' }, { char: '木', zhuyin: 'ㄇㄨˋ' }, { char: '手', zhuyin: 'ㄕㄡˇ' },
+  { char: '目', zhuyin: 'ㄇㄨˋ' }, { char: '牛', zhuyin: 'ㄋㄧㄡˊ' }, { char: '羊', zhuyin: 'ㄧㄤˊ' }, { char: '馬', zhuyin: 'ㄇㄚˇ' }, { char: '果', zhuyin: 'ㄍㄨㄛˇ' },
+  { char: '巢', zhuyin: 'ㄔㄠˊ' }, { char: '雨', zhuyin: 'ㄩˇ' }, { char: '雷', zhuyin: 'ㄌㄟˊ' }, { char: '電', zhuyin: 'ㄉㄧㄢˋ' }, { char: '色', zhuyin: 'ㄙㄜˋ' },
+  { char: '紅', zhuyin: 'ㄏㄨㄥˊ' }, { char: '白', zhuyin: 'ㄅㄞˊ' }, { char: '黃', zhuyin: 'ㄏㄨㄤˊ' }, { char: '綠', zhuyin: 'ㄌㄩˋ' }, { char: '藍', zhuyin: 'ㄌㄢˊ' },
+  { char: '黑', zhuyin: 'ㄏㄟ' }, { char: '橘', zhuyin: 'ㄐㄩˊ' }, { char: '紫', zhuyin: 'ㄗˇ' }, { char: '這', zhuyin: 'ㄓㄜˋ' }, { char: '是', zhuyin: 'ㄕˋ' },
+  { char: '你', zhuyin: 'ㄋㄧˇ' }, { char: '我', zhuyin: 'ㄨㄛˇ' }, { char: '他', zhuyin: 'ㄊㄚ' }, { char: '她', zhuyin: 'ㄊㄚ' }, { char: '媽', zhuyin: 'ㄇㄚ' },
+  { char: '有', zhuyin: 'ㄧㄡˇ' }, { char: '沒', zhuyin: 'ㄇㄟˊ' }, { char: '嗎', zhuyin: 'ㄇㄚ' }, { char: '耳', zhuyin: 'ㄦˇ' }, { char: '會', zhuyin: 'ㄏㄨㄟˋ' },
+  { char: '不', zhuyin: 'ㄅㄨˋ' }, { char: '心', zhuyin: 'ㄒㄧㄣ' }, { char: '大', zhuyin: 'ㄉㄚˋ' }, { char: '小', zhuyin: 'ㄒㄧㄠˇ' }, { char: '叫', zhuyin: 'ㄐㄧㄠˋ' },
+  { char: '吃', zhuyin: 'ㄔ' }, { char: '王', zhuyin: 'ㄨㄤˊ' }, { char: '林', zhuyin: 'ㄌㄧㄣˊ' }, { char: '個', zhuyin: 'ㄍㄜˋ' }, { char: '隻', zhuyin: 'ㄓ' },
+  { char: '長', zhuyin: 'ㄔㄤˊ' }, { char: '張', zhuyin: 'ㄓㄤ' }, { char: '條', zhuyin: 'ㄊㄧㄠˊ' }, { char: '本', zhuyin: 'ㄅㄣˇ' }, { char: '立', zhuyin: 'ㄌㄧˋ' },
+  { char: '在', zhuyin: 'ㄗㄞˋ' }, { char: '誰', zhuyin: 'ㄕㄟˊ' }, { char: '火', zhuyin: 'ㄏㄨㄛˇ' }, { char: '災', zhuyin: 'ㄗㄞ' }, { char: '面', zhuyin: 'ㄇㄧㄢˋ' },
+  { char: '左', zhuyin: 'ㄗㄨㄛˇ' }, { char: '右', zhuyin: 'ㄧㄡˋ' }, { char: '外', zhuyin: 'ㄨㄞˋ' }, { char: '足', zhuyin: 'ㄗㄨˊ' }, { char: '短', zhuyin: 'ㄉㄨㄢˇ' },
+  { char: '高', zhuyin: 'ㄍㄠ' }, { char: '矮', zhuyin: 'ㄞˇ' }, { char: '多', zhuyin: 'ㄉㄨㄛ' }, { char: '少', zhuyin: 'ㄕㄠˇ' }, { char: '比', zhuyin: 'ㄅㄧˇ' },
+  { char: '瓜', zhuyin: 'ㄍㄨㄚ' }, { char: '爪', zhuyin: 'ㄓㄨㄚˇ' }, { char: '抓', zhuyin: 'ㄓㄨㄚ' }, { char: '魚', zhuyin: 'ㄩˊ' }, { char: '骨', zhuyin: 'ㄍㄨˇ' },
+  { char: '烏', zhuyin: 'ㄨ' }, { char: '鳥', zhuyin: 'ㄋㄧㄠˇ' }, { char: '圓', zhuyin: 'ㄩㄢˊ' }, { char: '方', zhuyin: 'ㄈㄤ' }, { char: '形', zhuyin: 'ㄒㄧㄥˊ' },
+  { char: '羽', zhuyin: 'ㄩˇ' }, { char: '貝', zhuyin: 'ㄅㄟˋ' }, { char: '買', zhuyin: 'ㄇㄞˇ' }, { char: '賣', zhuyin: 'ㄇㄞˋ' }, { char: '今', zhuyin: 'ㄐㄧㄣ' },
+  { char: '天', zhuyin: 'ㄊㄧㄢ' }, { char: '龍', zhuyin: 'ㄌㄨㄥˊ' }, { char: '象', zhuyin: 'ㄒㄧㄤˋ' }, { char: '虎', zhuyin: 'ㄏㄨˇ' }, { char: '可', zhuyin: 'ㄎㄜˇ' },
+];
+
 
     const STORAGE_PREFIX = `quiz_${quiz_name}_`;
     document.getElementById("quizNameLabel").textContent = quiz_name;
