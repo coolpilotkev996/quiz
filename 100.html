@@ -644,51 +644,29 @@
 
 <!-- EmailJS SDK -->
 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
-<script type="text/javascript">
-  (function() {
-    // 初始化 EmailJS
-    if (typeof emailjs !== 'undefined') {
-      emailjs.init({
-        publicKey: 'JAWHSz403PjMAwCk4', // 請替換為您的 EmailJS Public Key
-      });
-    }
-  })();
-</script>
 
 <script>
   (function() {
     // --------------------------------------------------------------
     // EmailJS 設定
     // --------------------------------------------------------------
+    const EMAILJS_PUBLIC_KEY = 'JAWHSz403PjMAwCk4'; 
     const EMAILJS_SERVICE_ID = 'service_ddwmsoi';
     const EMAILJS_TEMPLATE_ID = 'template_5lfzy0j';
-    // 注意：需要在 EmailJS 後台設定 Public Key，並在 template 中設定變數
-    // 建議的 template 變數名稱 (請在 EmailJS 後台對應設定):
-    // {{student_name}}, {{status}}, {{score}}, {{remaining}}, {{percentage}}, {{timestamp}}
-    // 或是使用 {{message}} 包含所有資訊
-
-    // 漢字資料 (與原本相同)
+     // 初始化 EmailJS
+    if (typeof emailjs !== 'undefined') {
+      emailjs.init({
+        publicKey: EMAILJS_PUBLIC_KEY, // 請替換為您的 EmailJS Public Key
+      });
+    }
+   
+    // 漢字資料 (Please update every time you want to change the quiz content or add new characters)
+    const quiz_name = '100';
     const CHARACTERS = [
       { char: '一', zhuyin: 'ㄧ' }, { char: '二', zhuyin: 'ㄦˋ' }, { char: '三', zhuyin: 'ㄙㄢ' },
-      { char: '四', zhuyin: 'ㄙˋ' }, { char: '五', zhuyin: 'ㄨˇ' }, { char: '六', zhuyin: 'ㄌㄧㄡˋ' },
-      { char: '七', zhuyin: 'ㄑㄧ' }, { char: '八', zhuyin: 'ㄅㄚ' }, { char: '九', zhuyin: 'ㄐㄧㄡˇ' },
-      { char: '十', zhuyin: 'ㄕˊ' }, { char: '日', zhuyin: 'ㄖˋ' }, { char: '月', zhuyin: 'ㄩㄝˋ' },
-      { char: '山', zhuyin: 'ㄕㄢ' }, { char: '水', zhuyin: 'ㄕㄨㄟˇ' }, { char: '人', zhuyin: 'ㄖㄣˊ' },
-      { char: '口', zhuyin: 'ㄎㄡˇ' }, { char: '上', zhuyin: 'ㄕㄤˋ' }, { char: '中', zhuyin: 'ㄓㄨㄥ' },
-      { char: '下', zhuyin: 'ㄒㄧㄚˋ' }, { char: '女', zhuyin: 'ㄋㄩˇ' }, { char: '男', zhuyin: 'ㄋㄢˊ' },
-      { char: '生', zhuyin: 'ㄕㄥ' }, { char: '明', zhuyin: 'ㄇㄧㄥˊ' }, { char: '木', zhuyin: 'ㄇㄨˋ' },
-      { char: '手', zhuyin: 'ㄕㄡˇ' }, { char: '目', zhuyin: 'ㄇㄨˋ' }, { char: '牛', zhuyin: 'ㄋㄧㄡˊ' },
-      { char: '羊', zhuyin: 'ㄧㄤˊ' }, { char: '馬', zhuyin: 'ㄇㄚˇ' }, { char: '果', zhuyin: 'ㄍㄨㄛˇ' },
-      { char: '巢', zhuyin: 'ㄔㄠˊ' }, { char: '雨', zhuyin: 'ㄩˇ' }, { char: '雷', zhuyin: 'ㄌㄟˊ' },
-      { char: '電', zhuyin: 'ㄉㄧㄢˋ' }, { char: '色', zhuyin: 'ㄙㄜˋ' }, { char: '紅', zhuyin: 'ㄏㄨㄥˊ' },
-      { char: '白', zhuyin: 'ㄅㄞˊ' }, { char: '黃', zhuyin: 'ㄏㄨㄤˊ' }, { char: '綠', zhuyin: 'ㄌㄩˋ' },
-      { char: '藍', zhuyin: 'ㄌㄢˊ' }, { char: '黑', zhuyin: 'ㄏㄟ' }, { char: '橘', zhuyin: 'ㄐㄩˊ' },
-      { char: '紫', zhuyin: 'ㄗˇ' }, { char: '這', zhuyin: 'ㄓㄜˋ' }, { char: '是', zhuyin: 'ㄕˋ' },
-      { char: '你', zhuyin: 'ㄋㄧˇ' }, { char: '我', zhuyin: 'ㄨㄛˇ' }, { char: '他', zhuyin: 'ㄊㄚ' },
-      { char: '她', zhuyin: 'ㄊㄚ' }, { char: '媽', zhuyin: 'ㄇㄚ' }
     ];
 
-    const STORAGE_PREFIX = 'zhuyin_quiz_';
+    const STORAGE_PREFIX = `quiz${quiz_name}_`;
 
     // DOM 元素
     const setupPanel = document.getElementById('setupPanel');
@@ -718,6 +696,7 @@
     const soundToggle = document.getElementById('soundToggle');
 
     // 狀態
+    const TOTAL_QUESTIONS = CHARACTERS.length;
     let studentName = '';
     let score = 0;
     let questionQueue = [];
@@ -890,7 +869,7 @@
               sessions.push({
                 name: name,
                 score: state.score || 0,
-                remaining: (state.questionQueue?.length || 0) + (state.currentQuestion ? 1 : 0),
+                remaining: getRemainingQuestions(state.score || 0),
                 timestamp: state.timestamp || 0
               });
             }
@@ -989,7 +968,7 @@
         return;
       }
 
-      const remaining = questionQueue.length + (currentQuestion ? 1 : 0);
+      const remaining = getRemainingQuestions();
       const totalAnswered = 100 - remaining;
       const percentage = totalAnswered > 0 ? Math.round((score / totalAnswered) * 100) : 0;
 
@@ -1031,9 +1010,6 @@
         percentage: percentage,
         timestamp: new Date().toLocaleString('zh-TW'),
         message: messageBody,
-        // 額外參數，方便模板使用
-        //to_name: '老師',
-       //from_name: studentName
       };
 
       // 設定按鈕 loading 狀態
@@ -1101,9 +1077,15 @@
       updateFloatingEmailButton();
     }
 
+    // Retries stay in questionQueue, but only a correct answer completes one of
+    // the character-array questions. Keep the progress counter independent of retries.
+    function getRemainingQuestions(scoreValue = score) {
+      return Math.max(0, TOTAL_QUESTIONS - scoreValue);
+    }
+
     function updateScoreAndProgress() {
       scoreDisplay.textContent = `得分：${score}`;
-      const remaining = questionQueue.length + (currentQuestion ? 1 : 0);
+      const remaining = getRemainingQuestions();
       progressDisplay.textContent = `剩餘：${remaining} 題`;
     }
 
@@ -1119,7 +1101,7 @@
 
       const existing = loadProgress(name);
       if (existing) {
-        if (!confirm(`「${name}」已有儲存的進度（得分 ${existing.score}，剩餘 ${(existing.questionQueue?.length || 0) + (existing.currentQuestion ? 1 : 0)} 題）。\n\n按「確定」會開始新測驗並覆蓋舊進度。\n按「取消」則載入舊進度。`)) {
+        if (!confirm(`「${name}」已有儲存的進度（得分 ${existing.score}，剩餘 ${getRemainingQuestions(existing.score || 0)} 題）。\n\n按「確定」會開始新測驗並覆蓋舊進度。\n按「取消」則載入舊進度。`)) {
           resumeQuiz(name);
           return;
         }
@@ -1131,13 +1113,7 @@
       answered = false;
       currentQuestion = null;
 
-      const baseList = CHARACTERS.map(item => ({ ...item }));
-      const extra = [];
-      for (let i = 0; i < 50; i++) {
-        const randomIndex = Math.floor(Math.random() * baseList.length);
-        extra.push({ ...baseList[randomIndex] });
-      }
-      let fullPool = [...baseList, ...extra];
+      let fullPool = CHARACTERS.map(item => ({ ...item }));
       for (let i = fullPool.length - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1));
         [fullPool[i], fullPool[j]] = [fullPool[j], fullPool[i]];
@@ -1355,9 +1331,9 @@
       emailPanel.classList.remove('hidden');
       setupPanel.classList.add('hidden');
 
-      const remaining = questionQueue.length + (currentQuestion ? 1 : 0);
+      const remaining = getRemainingQuestions();
       emailHint.innerHTML = completed
-        ? `🎉 測驗完成！得分：${score} / 100 (剩餘未答：${remaining})`
+        ? `🎉 測驗完成！得分：${score} / ${TOTAL_QUESTIONS} (剩餘未答：${remaining})`
         : `⏸️ 測驗已停止。得分：${score}，尚未完成的題數：${remaining}`;
 
       if (completed) {
@@ -1376,7 +1352,7 @@
         emailPanel.classList.remove('hidden');
         setupPanel.classList.add('hidden');
 
-        const remaining = questionQueue.length + (currentQuestion ? 1 : 0);
+        const remaining = getRemainingQuestions();
         emailHint.innerHTML = `⏸️ 測驗已停止。得分：${score}，尚未完成的題數：${remaining}。進度已儲存，下次可恢復。`;
         updateSavedSessionsList();
         updateFloatingEmailButton();
@@ -1433,7 +1409,7 @@
         if (!name) return;
         const existing = loadProgress(name);
         if (existing && !quizActive) {
-          if (confirm(`「${name}」已有儲存的進度（得分 ${existing.score}，剩餘 ${(existing.questionQueue?.length || 0) + (existing.currentQuestion ? 1 : 0)} 題）。\n\n按「確定」恢復進度。\n按「取消」開始新測驗（會覆蓋舊進度）。`)) {
+          if (confirm(`「${name}」已有儲存的進度（得分 ${existing.score}，剩餘 ${getRemainingQuestions(existing.score || 0)} 題）。\n\n按「確定」恢復進度。\n按「取消」開始新測驗（會覆蓋舊進度）。`)) {
             resumeQuiz(name);
             return;
           }
