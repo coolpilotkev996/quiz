@@ -664,7 +664,7 @@
     // 漢字資料 (Please update every time you want to change the quiz content or add new characters)
     const quiz_name = '1500';
     const CHARACTERS = [
-    { char: '療', zhuyin: 'ㄌㄧㄠˊ' }, { char: '診', zhuyin: 'ㄓㄣˇ' }, { char: '脈', zhuyin: 'ㄇㄞˋ' }, { char: '搏', zhuyin: 'ㄅㄛˊ' }, { char: '炎', zhuyin: 'ㄧㄢˊ' },
+    { char: '療', zhuyin: 'ㄌㄧㄠˊ' }, { char: '檢', zhuyin: 'ㄐㄧㄢˇ' }, { char: '脈', zhuyin: 'ㄇㄞˋ' }, { char: '搏', zhuyin: 'ㄅㄛˊ' }, { char: '炎', zhuyin: 'ㄧㄢˊ' },
     { char: '症', zhuyin: 'ㄓㄥˋ' }, { char: '狀', zhuyin: 'ㄓㄨㄤˋ' }, { char: '疫', zhuyin: 'ㄧˋ' }, { char: '針', zhuyin: 'ㄓㄣ' }, { char: '灸', zhuyin: 'ㄐㄧㄡˇ' },
     { char: '丸', zhuyin: 'ㄨㄢˊ' }, { char: '膏', zhuyin: 'ㄍㄠ' }, { char: '敷', zhuyin: 'ㄈㄨ' }, { char: '銬', zhuyin: 'ㄎㄠˋ' }, { char: '拐', zhuyin: 'ㄍㄨㄞˇ' },
     { char: '床', zhuyin: 'ㄔㄨㄤˊ' }, { char: '枕', zhuyin: 'ㄓㄣˇ' }, { char: '被', zhuyin: 'ㄅㄟˋ' }, { char: '褥', zhuyin: 'ㄖㄨˋ' }, { char: '毯', zhuyin: 'ㄊㄢˇ' },
@@ -672,11 +672,11 @@
     { char: '壺', zhuyin: 'ㄏㄨˊ' }, { char: '碟', zhuyin: 'ㄉㄧㄝˊ' }, { char: '勺', zhuyin: 'ㄕㄠˊ' }, { char: '鏟', zhuyin: 'ㄔㄢˇ' }, { char: '烤', zhuyin: 'ㄎㄠˇ' },
     { char: '箱', zhuyin: 'ㄒㄧㄤ' }, { char: '微', zhuyin: 'ㄨㄟˊ' }, { char: '波', zhuyin: 'ㄅㄛ' }, { char: '燥', zhuyin: 'ㄗㄠˋ' }, { char: '濾', zhuyin: 'ㄌㄩˋ' },
     { char: '沐', zhuyin: 'ㄇㄨˋ' }, { char: '浴', zhuyin: 'ㄩˋ' }, { char: '皂', zhuyin: 'ㄗㄠˋ' }, { char: '髮', zhuyin: 'ㄈㄚˇ' }, { char: '乳', zhuyin: 'ㄖㄨˇ' },
-    { char: '膏', zhuyin: 'ㄍㄠˋ' }, { char: '藥', zhuyin: 'ㄧㄠˋ' }, { char: '劑', zhuyin: 'ㄐㄧˋ' }, { char: '方', zhuyin: 'ㄈㄤ' }, { char: '處', zhuyin: 'ㄔㄨˋ' },
+    { char: '油', zhuyin: 'ㄧㄡˊ' }, { char: '藥', zhuyin: 'ㄧㄠˋ' }, { char: '劑', zhuyin: 'ㄐㄧˋ' }, { char: '方', zhuyin: 'ㄈㄤ' }, { char: '處', zhuyin: 'ㄔㄨˋ' },
     { char: '簽', zhuyin: 'ㄑㄧㄢ' }, { char: '單', zhuyin: 'ㄉㄢ' }, { char: '掛', zhuyin: 'ㄍㄨㄚˋ' }, { char: '號', zhuyin: 'ㄏㄠˋ' }, { char: '診', zhuyin: 'ㄓㄣˇ' },
-    { char: '間', zhuyin: 'ㄐㄧㄢ' }, { char: '病', zhuyin: 'ㄅㄧㄥˋ' }, { char: '房', zhuyin: 'ㄈㄤˊ' }, { char: '床', zhuyin: 'ㄔㄨㄤˊ' }, { char: '位', zhuyin: 'ㄨㄟˋ' },
+    { char: '間', zhuyin: 'ㄐㄧㄢ' }, { char: '病', zhuyin: 'ㄅㄧㄥˋ' }, { char: '房', zhuyin: 'ㄈㄤˊ' }, { char: '架', zhuyin: 'ㄐㄧㄚˋ' }, { char: '位', zhuyin: 'ㄨㄟˋ' },
     { char: '護', zhuyin: 'ㄏㄨˋ' }, { char: '理', zhuyin: 'ㄌㄧˇ' }, { char: '師', zhuyin: 'ㄕ' }, { char: '助', zhuyin: 'ㄓㄨˋ' }, { char: '產', zhuyin: 'ㄔㄢˇ' },
-    { char: '科', zhuyin: 'ㄎㄜ' }, { char: '牙', zhuyin: 'ㄧㄚˊ' }, { char: '醫', zhuyin: 'ㄧ' }, { char: '院', zhuyin: 'ㄩㄢˋ' }, { char: '診', zhuyin: 'ㄓㄣˇ' },
+    { char: '科', zhuyin: 'ㄎㄜ' }, { char: '牙', zhuyin: 'ㄧㄚˊ' }, { char: '醫', zhuyin: 'ㄧ' }, { char: '院', zhuyin: 'ㄩㄢˋ' }, { char: '急', zhuyin: 'ㄐㄧˊ' },
     { char: '所', zhuyin: 'ㄙㄨㄛˇ' }, { char: '衛', zhuyin: 'ㄨㄟˋ' }, { char: '教', zhuyin: 'ㄐㄧㄠˋ' }, { char: '育', zhuyin: 'ㄩˋ' }, { char: '宣', zhuyin: 'ㄒㄩㄢ' },
     { char: '導', zhuyin: 'ㄉㄠˇ' }, { char: '預', zhuyin: 'ㄩˋ' }, { char: '防', zhuyin: 'ㄈㄤˊ' }, { char: '接', zhuyin: 'ㄐㄧㄝ' }, { char: '種', zhuyin: 'ㄓㄨㄥˋ' },
     { char: '注', zhuyin: 'ㄓㄨˋ' }, { char: '射', zhuyin: 'ㄕㄜˋ' }, { char: '口', zhuyin: 'ㄎㄡˇ' }, { char: '服', zhuyin: 'ㄈㄨˊ' }, { char: '吞', zhuyin: 'ㄊㄨㄣ' },
