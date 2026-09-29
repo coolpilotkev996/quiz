@@ -664,27 +664,27 @@
     // 漢字資料 (Please update every time you want to change the quiz content or add new characters)
     const quiz_name = '200';
     const CHARACTERS = [
-  { char: '好', zhuyin: 'ㄏㄠˇ' }, { char: '名', zhuyin: 'ㄇㄧㄥˊ' }, { char: '字', zhuyin: 'ㄗˋ' }, { char: '什', zhuyin: 'ㄕㄣˊ' }, { char: '麼', zhuyin: 'ㄇㄜ˙' },
-    { char: '家', zhuyin: 'ㄐㄧㄚ' }, { char: '幾', zhuyin: 'ㄐㄧˇ' }, { char: '個', zhuyin: 'ㄍㄜˋ' }, { char: '爸', zhuyin: 'ㄅㄚˋ' }, { char: '和', zhuyin: 'ㄏㄢˋ' },
-    { char: '哥', zhuyin: 'ㄍㄜ' }, { char: '弟', zhuyin: 'ㄉㄧˋ' }, { char: '姊', zhuyin: 'ㄐㄧㄝˇ' }, { char: '妹', zhuyin: 'ㄇㄟˋ' }, { char: '同', zhuyin: 'ㄊㄨㄥˊ' },
-    { char: '學', zhuyin: 'ㄒㄩㄝˊ' }, { char: '老', zhuyin: 'ㄌㄠˇ' }, { char: '師', zhuyin: 'ㄕ' }, { char: '朋', zhuyin: 'ㄆㄥˊ' }, { char: '友', zhuyin: 'ㄧㄡˇ' },
-    { char: '班', zhuyin: 'ㄅㄢ' }, { char: '們', zhuyin: 'ㄇㄣ˙' }, { char: '兩', zhuyin: 'ㄌㄧㄤˇ' }, { char: '早', zhuyin: 'ㄗㄠˇ' }, { char: '飯', zhuyin: 'ㄈㄢˋ' },
-    { char: '吃', zhuyin: 'ㄔ' }, { char: '麵', zhuyin: 'ㄇㄧㄢˋ' }, { char: '包', zhuyin: 'ㄅㄠ' }, { char: '喝', zhuyin: 'ㄏㄜ' }, { char: '奶', zhuyin: 'ㄋㄞˇ' },
-    { char: '午', zhuyin: 'ㄨˇ' }, { char: '晚', zhuyin: 'ㄨㄢˇ' }, { char: '蛋', zhuyin: 'ㄉㄢˋ' }, { char: '香', zhuyin: 'ㄒㄧㄤ' }, { char: '蕉', zhuyin: 'ㄐㄧㄠ' },
-    { char: '蘋', zhuyin: 'ㄆㄧㄥˊ' }, { char: '冬', zhuyin: 'ㄉㄨㄥ' }, { char: '夏', zhuyin: 'ㄒㄧㄚˋ' }, { char: '喜', zhuyin: 'ㄒㄧˇ' }, { char: '冷', zhuyin: 'ㄌㄥˇ' },
-    { char: '歡', zhuyin: 'ㄏㄨㄢ' }, { char: '不', zhuyin: 'ㄅㄨˋ' }, { char: '要', zhuyin: 'ㄧㄠˋ' }, { char: '春', zhuyin: 'ㄔㄨㄣ' }, { char: '秋', zhuyin: 'ㄑㄧㄡ' },
-    { char: '熱', zhuyin: 'ㄖㄜˋ' }, { char: '很', zhuyin: 'ㄏㄣˇ' }, { char: '的', zhuyin: 'ㄉㄜ˙' }, { char: '是', zhuyin: 'ㄕˋ' }, { char: '號', zhuyin: 'ㄏㄠˋ' },
-    { char: '愛', zhuyin: 'ㄞˋ' }, { char: '因', zhuyin: 'ㄧㄣ' }, { char: '為', zhuyin: 'ㄨㄟˋ' }, { char: '先', zhuyin: 'ㄒㄧㄢ' }, { char: '節', zhuyin: 'ㄐㄧㄝˊ' },
-    { char: '書', zhuyin: 'ㄕㄨ' }, { char: '童', zhuyin: 'ㄊㄨㄥˊ' }, { char: '來', zhuyin: 'ㄌㄞˊ' }, { char: '吧', zhuyin: 'ㄅㄚ˙' }, { char: '章', zhuyin: 'ㄓㄤ' },
-    { char: '約', zhuyin: 'ㄩㄝ' }, { char: '翰', zhuyin: 'ㄏㄢˋ' }, { char: '壹', zhuyin: 'ㄧ' }, { char: '希', zhuyin: 'ㄒㄧ' }, { char: '望', zhuyin: 'ㄨㄤˋ' },
-    { char: '課', zhuyin: 'ㄎㄜˋ' }, { char: '作', zhuyin: 'ㄗㄨㄛˋ' }, { char: '業', zhuyin: 'ㄧㄝˋ' }, { char: '創', zhuyin: 'ㄔㄨㄤˋ' }, { char: '造', zhuyin: 'ㄗㄠˋ' },
-    { char: '每', zhuyin: 'ㄇㄟˇ' }, { char: '最', zhuyin: 'ㄗㄨㄟˋ' }, { char: '夢', zhuyin: 'ㄇㄥˋ' }, { char: '想', zhuyin: 'ㄒㄧㄤˇ' }, { char: '彼', zhuyin: 'ㄅㄧˇ' },
-    { char: '此', zhuyin: 'ㄘˇ' }, { char: '照', zhuyin: 'ㄓㄠˋ' }, { char: '亮', zhuyin: 'ㄌㄧㄤˋ' }, { char: '扶', zhuyin: 'ㄈㄨˊ' }, { char: '持', zhuyin: 'ㄔˊ' },
-    { char: '擁', zhuyin: 'ㄩㄥˇ' }, { char: '抱', zhuyin: 'ㄅㄠˋ' }, { char: '讓', zhuyin: 'ㄖㄤˋ' }, { char: '世', zhuyin: 'ㄕˋ' }, { char: '界', zhuyin: 'ㄐㄧㄝˋ' },
-    { char: '樣', zhuyin: 'ㄧㄤˋ' }, { char: '神', zhuyin: 'ㄕㄣˊ' }, { char: '笑', zhuyin: 'ㄒㄧㄠˋ' }, { char: '仙', zhuyin: 'ㄒㄧㄢ' }, { char: '雖', zhuyin: 'ㄙㄨㄟ' },
-    { char: '然', zhuyin: 'ㄖㄢˊ' }, { char: '唱', zhuyin: 'ㄔㄤˋ' }, { char: '歌', zhuyin: 'ㄍㄜ' }, { char: '走', zhuyin: 'ㄗㄡˇ' }, { char: '路', zhuyin: 'ㄌㄨˋ' },
-    { char: '往', zhuyin: 'ㄨㄤˇ' }, { char: '祝', zhuyin: 'ㄓㄨˋ' }, { char: '福', zhuyin: 'ㄈㄨˊ' }, { char: '向', zhuyin: 'ㄒㄧㄤˋ' }, { char: '再', zhuyin: 'ㄗㄞˋ' },
-  ];
+      { char: '好', zhuyin: 'ㄏㄠˇ' }, { char: '名', zhuyin: 'ㄇㄧㄥˊ' }, { char: '字', zhuyin: 'ㄗˋ' }, { char: '什', zhuyin: 'ㄕㄣˊ' }, { char: '麼', zhuyin: 'ㄇㄜ˙' },
+      { char: '家', zhuyin: 'ㄐㄧㄚ' }, { char: '幾', zhuyin: 'ㄐㄧˇ' }, { char: '個', zhuyin: 'ㄍㄜˋ' }, { char: '爸', zhuyin: 'ㄅㄚˋ' }, { char: '和', zhuyin: 'ㄏㄢˋ' },
+      { char: '哥', zhuyin: 'ㄍㄜ' }, { char: '弟', zhuyin: 'ㄉㄧˋ' }, { char: '姊', zhuyin: 'ㄐㄧㄝˇ' }, { char: '妹', zhuyin: 'ㄇㄟˋ' }, { char: '同', zhuyin: 'ㄊㄨㄥˊ' },
+      { char: '學', zhuyin: 'ㄒㄩㄝˊ' }, { char: '老', zhuyin: 'ㄌㄠˇ' }, { char: '師', zhuyin: 'ㄕ' }, { char: '朋', zhuyin: 'ㄆㄥˊ' }, { char: '友', zhuyin: 'ㄧㄡˇ' },
+      { char: '班', zhuyin: 'ㄅㄢ' }, { char: '們', zhuyin: 'ㄇㄣ˙' }, { char: '兩', zhuyin: 'ㄌㄧㄤˇ' }, { char: '早', zhuyin: 'ㄗㄠˇ' }, { char: '飯', zhuyin: 'ㄈㄢˋ' },
+      { char: '吃', zhuyin: 'ㄔ' }, { char: '麵', zhuyin: 'ㄇㄧㄢˋ' }, { char: '包', zhuyin: 'ㄅㄠ' }, { char: '喝', zhuyin: 'ㄏㄜ' }, { char: '奶', zhuyin: 'ㄋㄞˇ' },
+      { char: '午', zhuyin: 'ㄨˇ' }, { char: '晚', zhuyin: 'ㄨㄢˇ' }, { char: '蛋', zhuyin: 'ㄉㄢˋ' }, { char: '香', zhuyin: 'ㄒㄧㄤ' }, { char: '蕉', zhuyin: 'ㄐㄧㄠ' },
+      { char: '蘋', zhuyin: 'ㄆㄧㄥˊ' }, { char: '冬', zhuyin: 'ㄉㄨㄥ' }, { char: '夏', zhuyin: 'ㄒㄧㄚˋ' }, { char: '喜', zhuyin: 'ㄒㄧˇ' }, { char: '冷', zhuyin: 'ㄌㄥˇ' },
+      { char: '歡', zhuyin: 'ㄏㄨㄢ' }, { char: '不', zhuyin: 'ㄅㄨˋ' }, { char: '要', zhuyin: 'ㄧㄠˋ' }, { char: '春', zhuyin: 'ㄔㄨㄣ' }, { char: '秋', zhuyin: 'ㄑㄧㄡ' },
+      { char: '熱', zhuyin: 'ㄖㄜˋ' }, { char: '很', zhuyin: 'ㄏㄣˇ' }, { char: '的', zhuyin: 'ㄉㄜ˙' }, { char: '是', zhuyin: 'ㄕˋ' }, { char: '號', zhuyin: 'ㄏㄠˋ' },
+      { char: '愛', zhuyin: 'ㄞˋ' }, { char: '因', zhuyin: 'ㄧㄣ' }, { char: '為', zhuyin: 'ㄨㄟˋ' }, { char: '先', zhuyin: 'ㄒㄧㄢ' }, { char: '節', zhuyin: 'ㄐㄧㄝˊ' },
+      { char: '書', zhuyin: 'ㄕㄨ' }, { char: '童', zhuyin: 'ㄊㄨㄥˊ' }, { char: '來', zhuyin: 'ㄌㄞˊ' }, { char: '吧', zhuyin: 'ㄅㄚ˙' }, { char: '章', zhuyin: 'ㄓㄤ' },
+      { char: '約', zhuyin: 'ㄩㄝ' }, { char: '翰', zhuyin: 'ㄏㄢˋ' }, { char: '壹', zhuyin: 'ㄧ' }, { char: '希', zhuyin: 'ㄒㄧ' }, { char: '望', zhuyin: 'ㄨㄤˋ' },
+      { char: '課', zhuyin: 'ㄎㄜˋ' }, { char: '作', zhuyin: 'ㄗㄨㄛˋ' }, { char: '業', zhuyin: 'ㄧㄝˋ' }, { char: '創', zhuyin: 'ㄔㄨㄤˋ' }, { char: '造', zhuyin: 'ㄗㄠˋ' },
+      { char: '每', zhuyin: 'ㄇㄟˇ' }, { char: '最', zhuyin: 'ㄗㄨㄟˋ' }, { char: '夢', zhuyin: 'ㄇㄥˋ' }, { char: '想', zhuyin: 'ㄒㄧㄤˇ' }, { char: '彼', zhuyin: 'ㄅㄧˇ' },
+      { char: '此', zhuyin: 'ㄘˇ' }, { char: '照', zhuyin: 'ㄓㄠˋ' }, { char: '亮', zhuyin: 'ㄌㄧㄤˋ' }, { char: '扶', zhuyin: 'ㄈㄨˊ' }, { char: '持', zhuyin: 'ㄔˊ' },
+      { char: '擁', zhuyin: 'ㄩㄥˇ' }, { char: '抱', zhuyin: 'ㄅㄠˋ' }, { char: '讓', zhuyin: 'ㄖㄤˋ' }, { char: '世', zhuyin: 'ㄕˋ' }, { char: '界', zhuyin: 'ㄐㄧㄝˋ' },
+      { char: '樣', zhuyin: 'ㄧㄤˋ' }, { char: '神', zhuyin: 'ㄕㄣˊ' }, { char: '笑', zhuyin: 'ㄒㄧㄠˋ' }, { char: '仙', zhuyin: 'ㄒㄧㄢ' }, { char: '雖', zhuyin: 'ㄙㄨㄟ' },
+      { char: '然', zhuyin: 'ㄖㄢˊ' }, { char: '唱', zhuyin: 'ㄔㄤˋ' }, { char: '歌', zhuyin: 'ㄍㄜ' }, { char: '走', zhuyin: 'ㄗㄡˇ' }, { char: '路', zhuyin: 'ㄌㄨˋ' },
+      { char: '往', zhuyin: 'ㄨㄤˇ' }, { char: '祝', zhuyin: 'ㄓㄨˋ' }, { char: '福', zhuyin: 'ㄈㄨˊ' }, { char: '向', zhuyin: 'ㄒㄧㄤˋ' }, { char: '再', zhuyin: 'ㄗㄞˋ' },
+    ];
 
     const STORAGE_PREFIX = `quiz${quiz_name}_`;
     document.getElementById("quizNameLabel").textContent = quiz_name;

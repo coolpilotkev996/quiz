@@ -223,7 +223,7 @@
       justify-content: space-between;
       align-items: center;
       gap: 12px;
-      margin: 16px;
+      margin-top: 16px;
     }
 
     .btn {
@@ -231,7 +231,7 @@
       margin: 8px 0px;
       border-radius: 60px;
       font-weight: 600;
-      font-size: 0.6rem;
+      font-size: 1rem;
       border: none;
       cursor: pointer;
       transition: 0.15s;
@@ -591,7 +591,7 @@
     </div>
   </div>
 
- <!-- 測驗主面板 (初始隱藏) -->
+  <!-- 測驗主面板 (初始隱藏) -->
   <div id="quizPanel" class="hidden">
      <!-- 反饋訊息 -->
     <div class="feedback-area" id="feedbackMessage">
@@ -662,31 +662,32 @@
     }
    
     // 漢字資料 (Please update every time you want to change the quiz content or add new characters)
-    const quiz_name = '600';
+    const quiz_name = '1900';
     const CHARACTERS = [
-    { char: '身', zhuyin: 'ㄕㄣ' }, { char: '體', zhuyin: 'ㄊㄧˇ' }, { char: '頭', zhuyin: 'ㄊㄡˊ' }, { char: '臉', zhuyin: 'ㄌㄧㄢˇ' }, { char: '眼', zhuyin: 'ㄧㄢˇ' },
-    { char: '睛', zhuyin: 'ㄐㄧㄥ' }, { char: '鼻', zhuyin: 'ㄅㄧˊ' }, { char: '嘴', zhuyin: 'ㄗㄨㄟˇ' }, { char: '牙', zhuyin: 'ㄧㄚˊ' }, { char: '舌', zhuyin: 'ㄕㄜˊ' },
-    { char: '脖', zhuyin: 'ㄅㄛˊ' }, { char: '肩', zhuyin: 'ㄐㄧㄢ' }, { char: '背', zhuyin: 'ㄅㄟˋ' }, { char: '胸', zhuyin: 'ㄒㄩㄥ' }, { char: '肚', zhuyin: 'ㄉㄨˋ' },
-    { char: '腰', zhuyin: 'ㄧㄠ' }, { char: '腿', zhuyin: 'ㄊㄨㄟˇ' }, { char: '腳', zhuyin: 'ㄐㄧㄠˇ' }, { char: '趾', zhuyin: 'ㄓˇ' }, { char: '指', zhuyin: 'ㄓˇ' },
-    { char: '皮', zhuyin: 'ㄆㄧˊ' }, { char: '血', zhuyin: 'ㄒㄧㄝˇ' }, { char: '汗', zhuyin: 'ㄏㄢˋ' }, { char: '淚', zhuyin: 'ㄌㄟˋ' }, { char: '聲', zhuyin: 'ㄕㄥ' },
-    { char: '音', zhuyin: 'ㄧㄣ' }, { char: '味', zhuyin: 'ㄨㄟˋ' }, { char: '氣', zhuyin: 'ㄑㄧˋ' }, { char: '力', zhuyin: 'ㄌㄧˋ' }, { char: '量', zhuyin: 'ㄌㄧㄤˋ' },
-    { char: '速', zhuyin: 'ㄙㄨˋ' }, { char: '度', zhuyin: 'ㄉㄨˋ' }, { char: '重', zhuyin: 'ㄓㄨㄥˋ' }, { char: '輕', zhuyin: 'ㄑㄧㄥ' }, { char: '厚', zhuyin: 'ㄏㄡˋ' },
-    { char: '薄', zhuyin: 'ㄅㄠˊ' }, { char: '寬', zhuyin: 'ㄎㄨㄢ' }, { char: '窄', zhuyin: 'ㄓㄞˇ' }, { char: '深', zhuyin: 'ㄕㄣ' }, { char: '淺', zhuyin: 'ㄑㄧㄢˇ' },
-    { char: '直', zhuyin: 'ㄓˊ' }, { char: '彎', zhuyin: 'ㄨㄢ' }, { char: '曲', zhuyin: 'ㄑㄩ' }, { char: '平', zhuyin: 'ㄆㄧㄥˊ' }, { char: '斜', zhuyin: 'ㄒㄧㄝˊ' },
-    { char: '正', zhuyin: 'ㄓㄥˋ' }, { char: '反', zhuyin: 'ㄈㄢˇ' }, { char: '真', zhuyin: 'ㄓㄣ' }, { char: '假', zhuyin: 'ㄐㄧㄚˇ' }, { char: '對', zhuyin: 'ㄉㄨㄟˋ' },
-    { char: '錯', zhuyin: 'ㄘㄨㄛˋ' }, { char: '壞', zhuyin: 'ㄏㄨㄞˋ' }, { char: '美', zhuyin: 'ㄇㄟˇ' }, { char: '醜', zhuyin: 'ㄔㄡˇ' }, { char: '強', zhuyin: 'ㄑㄧㄤˊ' },
-    { char: '弱', zhuyin: 'ㄖㄨㄛˋ' }, { char: '軟', zhuyin: 'ㄖㄨㄢˇ' }, { char: '硬', zhuyin: 'ㄧㄥˋ' }, { char: '乾', zhuyin: 'ㄍㄢ' }, { char: '濕', zhuyin: 'ㄕ' },
-    { char: '暖', zhuyin: 'ㄋㄨㄢˇ' }, { char: '涼', zhuyin: 'ㄌㄧㄤˊ' }, { char: '甜', zhuyin: 'ㄊㄧㄢˊ' }, { char: '酸', zhuyin: 'ㄙㄨㄢ' }, { char: '苦', zhuyin: 'ㄎㄨˇ' },
-    { char: '辣', zhuyin: 'ㄌㄚˋ' }, { char: '鹹', zhuyin: 'ㄒㄧㄢˊ' }, { char: '淡', zhuyin: 'ㄉㄢˋ' }, { char: '濃', zhuyin: 'ㄋㄨㄥˊ' }, { char: '油', zhuyin: 'ㄧㄡˊ' },
-    { char: '鹽', zhuyin: 'ㄧㄢˊ' }, { char: '糖', zhuyin: 'ㄊㄤˊ' }, { char: '醋', zhuyin: 'ㄘㄨˋ' }, { char: '茶', zhuyin: 'ㄔㄚˊ' }, { char: '酒', zhuyin: 'ㄐㄧㄡˇ' },
-    { char: '湯', zhuyin: 'ㄊㄤ' }, { char: '粥', zhuyin: 'ㄓㄡ' }, { char: '糕', zhuyin: 'ㄍㄠ' }, { char: '餅', zhuyin: 'ㄅㄧㄥˇ' }, { char: '冰', zhuyin: 'ㄅㄧㄥ' },
-    { char: '雪', zhuyin: 'ㄒㄩㄝˇ' }, { char: '風', zhuyin: 'ㄈㄥ' }, { char: '雲', zhuyin: 'ㄩㄣˊ' }, { char: '霧', zhuyin: 'ㄨˋ' }, { char: '霜', zhuyin: 'ㄕㄨㄤ' },
-    { char: '露', zhuyin: 'ㄌㄨˋ' }, { char: '晴', zhuyin: 'ㄑㄧㄥˊ' }, { char: '陰', zhuyin: 'ㄧㄣ' }, { char: '星', zhuyin: 'ㄒㄧㄥ' }, { char: '辰', zhuyin: 'ㄔㄣˊ' },
-    { char: '空', zhuyin: 'ㄎㄨㄥ' }, { char: '光', zhuyin: 'ㄍㄨㄤ' }, { char: '暗', zhuyin: 'ㄢˋ' }, { char: '影', zhuyin: 'ㄧㄥˇ' }, { char: '彩', zhuyin: 'ㄘㄞˇ' },
-    { char: '虹', zhuyin: 'ㄏㄨㄥˊ' }, { char: '骨', zhuyin: 'ㄍㄨˇ' }, { char: '肉', zhuyin: 'ㄖㄡˋ' }, { char: '羽', zhuyin: 'ㄩˇ' }, { char: '翅', zhuyin: 'ㄔˋ' }
-    ];  
+    { char: '僧', zhuyin: 'ㄙㄥ' }, { char: '尼', zhuyin: 'ㄋㄧˊ' }, { char: '佛', zhuyin: 'ㄈㄛˊ' }, { char: '菩', zhuyin: 'ㄆㄨˊ' }, { char: '薩', zhuyin: 'ㄙㄚˋ' },
+    { char: '禪', zhuyin: 'ㄔㄢˊ' }, { char: '咒', zhuyin: 'ㄓㄡˋ' }, { char: '梵', zhuyin: 'ㄈㄢˋ' }, { char: '缽', zhuyin: 'ㄅㄛ' }, { char: '袈', zhuyin: 'ㄐㄧㄚ' },
+    { char: '裟', zhuyin: 'ㄕㄚ' }, { char: '剃', zhuyin: 'ㄊㄧˋ' }, { char: '孽', zhuyin: 'ㄋㄧㄝˋ' }, { char: '障', zhuyin: 'ㄓㄤˋ' }, { char: '冥', zhuyin: 'ㄇㄧㄥˊ' },
+    { char: '勢', zhuyin: 'ㄕˋ' }, { char: '至', zhuyin: 'ㄓˋ' }, { char: '普', zhuyin: 'ㄆㄨˇ' }, { char: '賢', zhuyin: 'ㄒㄧㄢˊ' }, { char: '文', zhuyin: 'ㄨㄣˊ' },
+    { char: '殊', zhuyin: 'ㄕㄨ' }, { char: '彌', zhuyin: 'ㄇㄧˊ' }, { char: '陀', zhuyin: 'ㄊㄨㄛˊ' }, { char: '牟', zhuyin: 'ㄇㄡˊ' }, { char: '耶', zhuyin: 'ㄧㄝ' },
+    { char: '穌', zhuyin: 'ㄙㄨ' }, { char: '基', zhuyin: 'ㄐㄧ' }, { char: '督', zhuyin: 'ㄉㄨ' }, { char: '聖', zhuyin: 'ㄕㄥˋ' }, { char: '瑪', zhuyin: 'ㄇㄚˇ' },
+    { char: '亞', zhuyin: 'ㄧㄚˋ' }, { char: '懺', zhuyin: 'ㄔㄢˋ' }, { char: '悔', zhuyin: 'ㄏㄨㄟˇ' }, { char: '贖', zhuyin: 'ㄕㄨˊ' }, { char: '罪', zhuyin: 'ㄗㄨㄟˋ' },
+    { char: '赦', zhuyin: 'ㄕㄜˋ' }, { char: '免', zhuyin: 'ㄇㄧㄢˇ' }, { char: '恩', zhuyin: 'ㄣ' }, { char: '慈', zhuyin: 'ㄘˊ' }, { char: '悲', zhuyin: 'ㄅㄟ' },
+    { char: '捨', zhuyin: 'ㄕㄜˇ' }, { char: '佈', zhuyin: 'ㄅㄨˋ' }, { char: '濟', zhuyin: 'ㄐㄧˋ' }, { char: '貧', zhuyin: 'ㄆㄧㄣˊ' }, { char: '賤', zhuyin: 'ㄐㄧㄢˋ' },
+    { char: '窮', zhuyin: 'ㄑㄩㄥˊ' }, { char: '祿', zhuyin: 'ㄌㄨˋ' }, { char: '壽', zhuyin: 'ㄕㄡˋ' }, { char: '丁', zhuyin: 'ㄉㄧㄥ' }, { char: '旺', zhuyin: 'ㄨㄤˋ' },
+    { char: '隆', zhuyin: 'ㄌㄨㄥˊ' }, { char: '昌', zhuyin: 'ㄔㄤ' }, { char: '祥', zhuyin: 'ㄒㄧㄤˊ' }, { char: '瑞', zhuyin: 'ㄖㄨㄟˋ' }, { char: '禧', zhuyin: 'ㄒㄧ' },
+    { char: '祭', zhuyin: 'ㄐㄧˋ' }, { char: '祀', zhuyin: 'ㄙˋ' }, { char: '祈', zhuyin: 'ㄑㄧˊ' }, { char: '供', zhuyin: 'ㄍㄨㄥˋ' }, { char: '奉', zhuyin: 'ㄈㄥˋ' },
+    { char: '獻', zhuyin: 'ㄒㄧㄢˋ' }, { char: '犧', zhuyin: 'ㄒㄧ' }, { char: '牲', zhuyin: 'ㄕㄥ' }, { char: '壇', zhuyin: 'ㄊㄢˊ' }, { char: '廟', zhuyin: 'ㄇㄧㄠˋ' },
+    { char: '庵', zhuyin: 'ㄢ' }, { char: '宮', zhuyin: 'ㄍㄨㄥ' }, { char: '殿', zhuyin: 'ㄉㄧㄢˋ' }, { char: '祠', zhuyin: 'ㄘˊ' }, { char: '塔', zhuyin: 'ㄊㄚˇ' },
+    { char: '磬', zhuyin: 'ㄑㄧㄥˋ' }, { char: '燭', zhuyin: 'ㄓㄨˊ' }, { char: '籠', zhuyin: 'ㄌㄨㄥˊ' }, { char: '念', zhuyin: 'ㄋㄧㄢˋ' }, { char: '叩', zhuyin: 'ㄎㄡˋ' },
+    { char: '合', zhuyin: 'ㄏㄜˊ' }, { char: '十', zhuyin: 'ㄕˊ' }, { char: '阿', zhuyin: 'ㄚ' }, { char: '埵', zhuyin: 'ㄉㄨㄛˇ' }, { char: '摩', zhuyin: 'ㄇㄛˊ' },
+    { char: '訶', zhuyin: 'ㄏㄜ' }, { char: '般', zhuyin: 'ㄅㄛ' }, { char: '若', zhuyin: 'ㄖㄜˇ' }, { char: '波', zhuyin: 'ㄅㄛ' }, { char: '羅', zhuyin: 'ㄌㄨㄛˊ' },
+    { char: '蜜', zhuyin: 'ㄇㄧˋ' }, { char: '多', zhuyin: 'ㄉㄨㄛ' }, { char: '自', zhuyin: 'ㄗˋ' }, { char: '在', zhuyin: 'ㄗㄞˋ' }, { char: '行', zhuyin: 'ㄒㄧㄥˊ' },
+    { char: '深', zhuyin: 'ㄕㄣ' }, { char: '照', zhuyin: 'ㄓㄠˋ' }, { char: '見', zhuyin: 'ㄐㄧㄢˋ' }, { char: '五', zhuyin: 'ㄨˇ' }, { char: '蘊', zhuyin: 'ㄩㄣˋ' },
+    { char: '皆', zhuyin: 'ㄐㄧㄝ' }, { char: '空', zhuyin: 'ㄎㄨㄥ' }, { char: '度', zhuyin: 'ㄉㄨˋ' }, { char: '厄', zhuyin: 'ㄜˋ' }, { char: '舍', zhuyin: 'ㄕㄜˋ' }
+    ];
 
-    const STORAGE_PREFIX = `quiz${quiz_name}_`;
+
+    const STORAGE_PREFIX = `quiz_${quiz_name}_`;
     document.getElementById("quizNameLabel").textContent = quiz_name;
 
     // DOM 元素message        
@@ -782,7 +783,7 @@
       const gain = ctx.createGain();
       osc.type = 'sine';
       osc.frequency.setValueAtTime(220, now);
-      osc.frequency.linearRampToValueAtTime(180, now + 0.18);
+      osc.frequency.linearRampToValueAtTime(180, now + 0.40);
       gain.gain.setValueAtTime(0, now);
       gain.gain.linearRampToValueAtTime(0.75, now + 0.02);
       gain.gain.exponentialRampToValueAtTime(0.001, now + 0.22);
