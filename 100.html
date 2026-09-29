@@ -583,7 +583,7 @@
     </div>
     <div class="button-group">
       <button class="btn btn-primary" id="startQuizBtn">🚀 開始新測驗</button>
-      <button class="btn btn-success" id="resumeQuizBtn" disabled>▶️ 恢復上次進度</button>
+      <button class="btn btn-success hidden" id="resumeQuizBtn" disabled>▶️ 恢復上次進度</button>
     </div>
     <div class="saved-sessions" id="savedSessionsContainer">
       <div class="saved-sessions-title">📋 已儲存的進度</div>
@@ -936,7 +936,7 @@
             deleteProgress(session.name);
             if (studentName === session.name) {
               studentName = '';
-              resumeQuizBtn.disabled = true;
+              checkResumeAvailability("");
             }
           }
         });
@@ -952,15 +952,10 @@
     }
 
     function checkResumeAvailability(name) {
-      if (!name) {
-        resumeQuizBtn.disabled = true;
-        return;
-      }
-      const saved = loadProgress(name);
-      resumeQuizBtn.disabled = !saved;
-      if (quizActive && studentName === name) {
-        resumeQuizBtn.disabled = true;
-      }
+      const saved = name ? loadProgress(name) : null;
+      const canResume = Boolean(saved) && !(quizActive && studentName === name);
+      resumeQuizBtn.disabled = !canResume;
+      resumeQuizBtn.classList.toggle("hidden", !canResume);
     }
 
     function updateFloatingEmailButton() {
@@ -1391,7 +1386,7 @@
       resetToSetup();
       studentNameInput.value = '';
       studentName = '';
-      resumeQuizBtn.disabled = true;
+      checkResumeAvailability("");
       updateSavedSessionsList();
       updateFloatingEmailButton();
     }
