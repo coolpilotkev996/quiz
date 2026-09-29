@@ -227,7 +227,7 @@
     }
 
     .btn {
-      padding: 5px 20px;
+      padding: 8px 40px;
       margin: 8px 0px;
       border-radius: 60px;
       font-weight: 600;
@@ -568,8 +568,7 @@
 <body>
 <div class="app" id="app">
   <h1>
-    漢字讀音測驗
-    <span>Zhuyin</span>
+    漢字測驗
     <span id="quizNameLabel"></span>
   </h1>
   <div class="teacher-note">
@@ -594,12 +593,11 @@
 
   <!-- 測驗主面板 (初始隱藏) -->
   <div id="quizPanel" class="hidden">
-    <!-- 底部按鈕 -->
-    <div class="action-buttons">
-      <button class="btn btn-secondary" id="stopQuizBtn">⏹️ 停止測驗</button>
-      <button class="btn btn-email" id="sendEmailDuringQuizBtn">📧 寄送成績</button>
-      <button class="btn btn-primary" id="nextBtn" disabled>下一題 →</button>
+     <!-- 反饋訊息 -->
+    <div class="feedback-area" id="feedbackMessage">
+      <span>✨ 選一個注音吧</span>
     </div>
+
     <div class="stats-bar">
       <div class="score-badge" id="scoreDisplay">得分：0</div>
       <div class="timer" id="progressDisplay">剩餘：100 題</div>
@@ -612,9 +610,11 @@
     <!-- 四個注音選項 -->
     <div class="options-grid" id="optionsContainer"></div>
 
-    <!-- 反饋訊息 -->
-    <div class="feedback-area" id="feedbackMessage">
-      <span>✨ 選一個注音吧</span>
+     <!-- 底部按鈕 -->
+    <div class="action-buttons">
+      <button class="btn btn-primary" id="nextBtn" disabled style="background-color: green;font-size:120%;width:100%">下一題 →</button>
+      <button class="btn btn-secondary" id="stopQuizBtn">⏹️ 停止測驗</button>
+      <button class="btn btn-email" id="sendEmailDuringQuizBtn">📧 寄送成績</button>
     </div>
   </div>
 
@@ -784,9 +784,9 @@
       const gain = ctx.createGain();
       osc.type = 'sine';
       osc.frequency.setValueAtTime(220, now);
-      osc.frequency.linearRampToValueAtTime(180, now + 0.18);
+      osc.frequency.linearRampToValueAtTime(180, now + 0.40);
       gain.gain.setValueAtTime(0, now);
-      gain.gain.linearRampToValueAtTime(0.18, now + 0.02);
+      gain.gain.linearRampToValueAtTime(0.75, now + 0.02);
       gain.gain.exponentialRampToValueAtTime(0.001, now + 0.22);
       osc.connect(gain);
       gain.connect(ctx.destination);
