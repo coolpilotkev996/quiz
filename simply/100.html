@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ㄅㄆㄇ 漢字讀法小测验 · 100字</title>
+  <title>拼音测验100字</title>
   <style>
     * {
       box-sizing: border-box;
@@ -568,77 +568,77 @@
 <body>
 <div class="app" id="app">
   <h1>
-    漢字測驗
+    汉字测验
     <span id="quizNameLabel"></span>
   </h1>
   <div class="teacher-note">
-    ✦ 看漢字 · 選注音 · 答錯會再出現 · 可隨時暫停與恢復進度 · 隨時寄送成績 
+    ✦ 看汉字 · 选拼音 · 答错会再出现 · 可随时暂停与恢复进度 · 随时寄送成绩 
   </div>
 
-  <!-- 學生姓名 + 開始區 -->
+  <!-- 学生姓名 + 开始区 -->
   <div id="setupPanel">
     <div class="name-row">
-      <label for="studentName">👤 學生姓名：</label>
-      <input type="text" id="studentName" placeholder="請輸入姓名" value="">
+      <label for="studentName">👤 学生姓名：</label>
+      <input type="text" id="studentName" placeholder="请输入姓名" value="">
     </div>
     <div class="button-group">
-      <button class="btn btn-primary" id="startQuizBtn">🚀 開始新測驗</button>
-      <button class="btn btn-success hidden" id="resumeQuizBtn" disabled>▶️ 恢復上次進度</button>
+      <button class="btn btn-primary" id="startQuizBtn">🚀 开始新测验</button>
+      <button class="btn btn-success hidden" id="resumeQuizBtn" disabled>▶️ 恢复上次进度</button>
     </div>
     <div class="saved-sessions" id="savedSessionsContainer">
-      <div class="saved-sessions-title">📋 已儲存的進度</div>
+      <div class="saved-sessions-title">📋 已储存的进度</div>
       <div class="session-tags" id="sessionTags"></div>
     </div>
   </div>
 
-  <!-- 測驗主面板 (初始隱藏) -->
+  <!-- 测验主面板 (初始隐藏) -->
   <div id="quizPanel" class="hidden">
-     <!-- 反饋訊息 -->
+     <!-- 反馈讯息 -->
     <div class="feedback-area" id="feedbackMessage">
-      <span>✨ 選一個注音吧</span>
+      <span>✨ 选一个拼音吧</span>
     </div>
 
     <div class="stats-bar">
       <div class="score-badge" id="scoreDisplay">得分：0</div>
-      <div class="timer" id="progressDisplay">剩餘：100 題</div>
-      <div class="resume-badge hidden" id="resumeBadge">💾 已恢復進度</div>
+      <div class="timer" id="progressDisplay">剩余：100 题</div>
+      <div class="resume-badge hidden" id="resumeBadge">💾 已恢复进度</div>
     </div>
 
-    <!-- 漢字大字 -->
+    <!-- 汉字大字 -->
     <div class="char-display" id="currentCharDisplay">一</div>
 
-    <!-- 四個注音選項 -->
+    <!-- 四个拼音选项 -->
     <div class="options-grid" id="optionsContainer"></div>
 
-     <!-- 底部按鈕 -->
+     <!-- 底部按钮 -->
     <div class="action-buttons">
-      <button class="btn btn-primary" id="nextBtn" disabled style="background-color: green;font-size:120%;width:100%">下一題 →</button>
-      <button class="btn btn-secondary" id="stopQuizBtn">⏹️ 停止測驗</button>
-      <button class="btn btn-email" id="sendEmailDuringQuizBtn">📧 寄送成績</button>
+      <button class="btn btn-primary" id="nextBtn" disabled style="background-color: green;font-size:120%;width:100%">下一题 →</button>
+      <button class="btn btn-secondary" id="stopQuizBtn">⏹️ 停止测验</button>
+      <button class="btn btn-email" id="sendEmailDuringQuizBtn">📧 寄送成绩</button>
     </div>
   </div>
 
-  <!-- 郵件區 (剛開始隱藏) -->
+  <!-- 邮件区 (刚开始隐藏) -->
   <div id="emailPanel" class="email-section hidden">
     <div style="display: flex; gap: 12px; flex-wrap: wrap;">
-      <button class="btn" id="sendEmailBtn">📧 寄送成績給老師</button>
-      <button class="btn btn-primary" id="restartBtn">🔄 重新測驗</button>
+      <button class="btn" id="sendEmailBtn">📧 寄送成绩给老师</button>
+      <button class="btn btn-primary" id="restartBtn">🔄 重新测验</button>
     </div>
     <div style="font-size: 0.9rem; color: #4a5e7a;" id="emailHint"></div>
   </div>
 
   <div class="footer">
-    ⚡ 答錯的漢字會自動加入後面題庫，直到答對為止 · 進度自動儲存 · 隨時可寄送成績
+    ⚡ 答错的汉字会自动加入后面题库，直到答对为止 · 进度自动储存 · 随时可寄送成绩
   </div>
 </div>
 
-<!-- 浮動寄送按鈕 -->
-<button class="floating-email-btn hidden" id="floatingEmailBtn" title="寄送成績給老師">
-  📧 寄送成績
+<!-- 浮动寄送按钮 -->
+<button class="floating-email-btn hidden" id="floatingEmailBtn" title="寄送成绩给老师">
+  📧 寄送成绩
 </button>
 
-<!-- 音效開關按鈕 -->
-<button class="sound-toggle" id="soundToggle" title="切換音效">🔊</button>
+<!-- 音效开关按钮 -->
+<button class="sound-toggle" id="soundToggle" title="切换音效">🔊</button>
 
 <!-- Toast 提示 -->
 <div class="toast" id="toast"></div>
@@ -649,7 +649,7 @@
 <script>
   (function() {
     // --------------------------------------------------------------
-    // EmailJS 設定
+    // EmailJS 设定
     // --------------------------------------------------------------
     const EMAILJS_PUBLIC_KEY = 'n-DWu6kPsXnwUz8Ug'; 
     const EMAILJS_SERVICE_ID = 'service_i0nwfwi';
@@ -657,35 +657,35 @@
      // 初始化 EmailJS
     if (typeof emailjs !== 'undefined') {
       emailjs.init({
-        publicKey: EMAILJS_PUBLIC_KEY, // 請替換為您的 EmailJS Public Key
+        publicKey: EMAILJS_PUBLIC_KEY, // 请替换为您的 EmailJS Public Key
       });
     }
    
-    // 漢字資料 (Please update every time you want to change the quiz content or add new characters)
+    // 汉字资料 (Please update every time you want to change the quiz content or add new characters)
     const quiz_name = '100';
     const CHARACTERS = [
-    { char: '一', zhuyin: 'ㄧ' }, { char: '二', zhuyin: 'ㄦˋ' }, { char: '三', zhuyin: 'ㄙㄢ' }, { char: '四', zhuyin: 'ㄙˋ' }, { char: '五', zhuyin: 'ㄨˇ' },
-    { char: '六', zhuyin: 'ㄌㄧㄡˋ' }, { char: '七', zhuyin: 'ㄑㄧ' }, { char: '八', zhuyin: 'ㄅㄚ' }, { char: '九', zhuyin: 'ㄐㄧㄡˇ' }, { char: '十', zhuyin: 'ㄕˊ' },
-    { char: '日', zhuyin: 'ㄖˋ' }, { char: '月', zhuyin: 'ㄩㄝˋ' }, { char: '山', zhuyin: 'ㄕㄢ' }, { char: '水', zhuyin: 'ㄕㄨㄟˇ' }, { char: '人', zhuyin: 'ㄖㄣˊ' },
-    { char: '口', zhuyin: 'ㄎㄡˇ' }, { char: '上', zhuyin: 'ㄕㄤˋ' }, { char: '中', zhuyin: 'ㄓㄨㄥ' }, { char: '下', zhuyin: 'ㄒㄧㄚˋ' }, { char: '女', zhuyin: 'ㄋㄩˇ' },
-    { char: '男', zhuyin: 'ㄋㄢˊ' }, { char: '生', zhuyin: 'ㄕㄥ' }, { char: '明', zhuyin: 'ㄇㄧㄥˊ' }, { char: '木', zhuyin: 'ㄇㄨˋ' }, { char: '手', zhuyin: 'ㄕㄡˇ' },
-    { char: '目', zhuyin: 'ㄇㄨˋ' }, { char: '牛', zhuyin: 'ㄋㄧㄡˊ' }, { char: '羊', zhuyin: 'ㄧㄤˊ' }, { char: '馬', zhuyin: 'ㄇㄚˇ' }, { char: '果', zhuyin: 'ㄍㄨㄛˇ' },
-    { char: '巢', zhuyin: 'ㄔㄠˊ' }, { char: '雨', zhuyin: 'ㄩˇ' }, { char: '雷', zhuyin: 'ㄌㄟˊ' }, { char: '電', zhuyin: 'ㄉㄧㄢˋ' }, { char: '色', zhuyin: 'ㄙㄜˋ' },
-    { char: '紅', zhuyin: 'ㄏㄨㄥˊ' }, { char: '白', zhuyin: 'ㄅㄞˊ' }, { char: '黃', zhuyin: 'ㄏㄨㄤˊ' }, { char: '綠', zhuyin: 'ㄌㄩˋ' }, { char: '藍', zhuyin: 'ㄌㄢˊ' },
-    { char: '黑', zhuyin: 'ㄏㄟ' }, { char: '橘', zhuyin: 'ㄐㄩˊ' }, { char: '紫', zhuyin: 'ㄗˇ' }, { char: '這', zhuyin: 'ㄓㄜˋ' }, { char: '是', zhuyin: 'ㄕˋ' },
-    { char: '你', zhuyin: 'ㄋㄧˇ' }, { char: '我', zhuyin: 'ㄨㄛˇ' }, { char: '他', zhuyin: 'ㄊㄚ' }, { char: '她', zhuyin: 'ㄊㄚ' }, { char: '媽', zhuyin: 'ㄇㄚ' },
-    { char: '有', zhuyin: 'ㄧㄡˇ' }, { char: '沒', zhuyin: 'ㄇㄟˊ' }, { char: '嗎', zhuyin: 'ㄇㄚ' }, { char: '耳', zhuyin: 'ㄦˇ' }, { char: '會', zhuyin: 'ㄏㄨㄟˋ' },
-    { char: '不', zhuyin: 'ㄅㄨˋ' }, { char: '心', zhuyin: 'ㄒㄧㄣ' }, { char: '大', zhuyin: 'ㄉㄚˋ' }, { char: '小', zhuyin: 'ㄒㄧㄠˇ' }, { char: '叫', zhuyin: 'ㄐㄧㄠˋ' },
-    { char: '吃', zhuyin: 'ㄔ' }, { char: '王', zhuyin: 'ㄨㄤˊ' }, { char: '林', zhuyin: 'ㄌㄧㄣˊ' }, { char: '個', zhuyin: 'ㄍㄜˋ' }, { char: '隻', zhuyin: 'ㄓ' },
-    { char: '長', zhuyin: 'ㄔㄤˊ' }, { char: '張', zhuyin: 'ㄓㄤ' }, { char: '條', zhuyin: 'ㄊㄧㄠˊ' }, { char: '本', zhuyin: 'ㄅㄣˇ' }, { char: '立', zhuyin: 'ㄌㄧˋ' },
-    { char: '在', zhuyin: 'ㄗㄞˋ' }, { char: '誰', zhuyin: 'ㄕㄟˊ' }, { char: '火', zhuyin: 'ㄏㄨㄛˇ' }, { char: '災', zhuyin: 'ㄗㄞ' }, { char: '面', zhuyin: 'ㄇㄧㄢˋ' },
-    { char: '左', zhuyin: 'ㄗㄨㄛˇ' }, { char: '右', zhuyin: 'ㄧㄡˋ' }, { char: '外', zhuyin: 'ㄨㄞˋ' }, { char: '足', zhuyin: 'ㄗㄨˊ' }, { char: '短', zhuyin: 'ㄉㄨㄢˇ' },
-    { char: '高', zhuyin: 'ㄍㄠ' }, { char: '矮', zhuyin: 'ㄞˇ' }, { char: '多', zhuyin: 'ㄉㄨㄛ' }, { char: '少', zhuyin: 'ㄕㄠˇ' }, { char: '比', zhuyin: 'ㄅㄧˇ' },
-    { char: '瓜', zhuyin: 'ㄍㄨㄚ' }, { char: '爪', zhuyin: 'ㄓㄨㄚˇ' }, { char: '抓', zhuyin: 'ㄓㄨㄚ' }, { char: '魚', zhuyin: 'ㄩˊ' }, { char: '骨', zhuyin: 'ㄍㄨˇ' },
-    { char: '烏', zhuyin: 'ㄨ' }, { char: '鳥', zhuyin: 'ㄋㄧㄠˇ' }, { char: '圓', zhuyin: 'ㄩㄢˊ' }, { char: '方', zhuyin: 'ㄈㄤ' }, { char: '形', zhuyin: 'ㄒㄧㄥˊ' },
-    { char: '羽', zhuyin: 'ㄩˇ' }, { char: '貝', zhuyin: 'ㄅㄟˋ' }, { char: '買', zhuyin: 'ㄇㄞˇ' }, { char: '賣', zhuyin: 'ㄇㄞˋ' }, { char: '今', zhuyin: 'ㄐㄧㄣ' },
-    { char: '天', zhuyin: 'ㄊㄧㄢ' }, { char: '龍', zhuyin: 'ㄌㄨㄥˊ' }, { char: '象', zhuyin: 'ㄒㄧㄤˋ' }, { char: '虎', zhuyin: 'ㄏㄨˇ' }, { char: '可', zhuyin: 'ㄎㄜˇ' },
-  ];
+    { char: '一', pinyin: 'yī' }, { char: '二', pinyin: 'èr' }, { char: '三', pinyin: 'sān' }, { char: '四', pinyin: 'sì' }, { char: '五', pinyin: 'wǔ' },
+    { char: '六', pinyin: 'liù' }, { char: '七', pinyin: 'qī' }, { char: '八', pinyin: 'bā' }, { char: '九', pinyin: 'jiǔ' }, { char: '十', pinyin: 'shí' },
+    { char: '日', pinyin: 'rì' }, { char: '月', pinyin: 'yuè' }, { char: '山', pinyin: 'shān' }, { char: '水', pinyin: 'shuǐ' }, { char: '人', pinyin: 'rén' },
+    { char: '口', pinyin: 'kǒu' }, { char: '上', pinyin: 'shàng' }, { char: '中', pinyin: 'zhōng' }, { char: '下', pinyin: 'xià' }, { char: '女', pinyin: 'nǚ' },
+    { char: '男', pinyin: 'nán' }, { char: '生', pinyin: 'shēng' }, { char: '明', pinyin: 'míng' }, { char: '木', pinyin: 'mù' }, { char: '手', pinyin: 'shǒu' },
+    { char: '目', pinyin: 'mù' }, { char: '牛', pinyin: 'niú' }, { char: '羊', pinyin: 'yáng' }, { char: '马', pinyin: 'mǎ' }, { char: '果', pinyin: 'guǒ' },
+    { char: '巢', pinyin: 'cháo' }, { char: '雨', pinyin: 'yǔ' }, { char: '雷', pinyin: 'léi' }, { char: '电', pinyin: 'diàn' }, { char: '色', pinyin: 'sè' },
+    { char: '红', pinyin: 'hóng' }, { char: '白', pinyin: 'bái' }, { char: '黄', pinyin: 'huáng' }, { char: '绿', pinyin: 'lǜ' }, { char: '蓝', pinyin: 'lán' },
+    { char: '黑', pinyin: 'hēi' }, { char: '橘', pinyin: 'jú' }, { char: '紫', pinyin: 'zǐ' }, { char: '这', pinyin: 'zhè' }, { char: '是', pinyin: 'shì' },
+    { char: '你', pinyin: 'nǐ' }, { char: '我', pinyin: 'wǒ' }, { char: '他', pinyin: 'tā' }, { char: '她', pinyin: 'tā' }, { char: '妈', pinyin: 'mā' },
+    { char: '有', pinyin: 'yǒu' }, { char: '没', pinyin: 'méi' }, { char: '吗', pinyin: 'ma' }, { char: '耳', pinyin: 'ěr' }, { char: '会', pinyin: 'huì' },
+    { char: '不', pinyin: 'bù' }, { char: '心', pinyin: 'xīn' }, { char: '大', pinyin: 'dà' }, { char: '小', pinyin: 'xiǎo' }, { char: '叫', pinyin: 'jiào' },
+    { char: '吃', pinyin: 'chī' }, { char: '王', pinyin: 'wáng' }, { char: '林', pinyin: 'lín' }, { char: '个', pinyin: 'gè' }, { char: '只', pinyin: 'zhī' },
+    { char: '长', pinyin: 'cháng' }, { char: '张', pinyin: 'zhāng' }, { char: '条', pinyin: 'tiáo' }, { char: '本', pinyin: 'běn' }, { char: '立', pinyin: 'lì' },
+    { char: '在', pinyin: 'zài' }, { char: '谁', pinyin: 'shéi' }, { char: '火', pinyin: 'huǒ' }, { char: '灾', pinyin: 'zāi' }, { char: '面', pinyin: 'miàn' },
+    { char: '左', pinyin: 'zuǒ' }, { char: '右', pinyin: 'yòu' }, { char: '外', pinyin: 'wài' }, { char: '足', pinyin: 'zú' }, { char: '短', pinyin: 'duǎn' },
+    { char: '高', pinyin: 'gāo' }, { char: '矮', pinyin: 'ǎi' }, { char: '多', pinyin: 'duō' }, { char: '少', pinyin: 'shǎo' }, { char: '比', pinyin: 'bǐ' },
+    { char: '瓜', pinyin: 'guā' }, { char: '爪', pinyin: 'zhuǎ' }, { char: '抓', pinyin: 'zhuā' }, { char: '鱼', pinyin: 'yú' }, { char: '骨', pinyin: 'gǔ' },
+    { char: '乌', pinyin: 'wū' }, { char: '鸟', pinyin: 'niǎo' }, { char: '圆', pinyin: 'yuán' }, { char: '方', pinyin: 'fāng' }, { char: '形', pinyin: 'xíng' },
+    { char: '羽', pinyin: 'yǔ' }, { char: '贝', pinyin: 'bèi' }, { char: '买', pinyin: 'mǎi' }, { char: '卖', pinyin: 'mài' }, { char: '今', pinyin: 'jīn' },
+    { char: '天', pinyin: 'tiān' }, { char: '龙', pinyin: 'lóng' }, { char: '象', pinyin: 'xiàng' }, { char: '虎', pinyin: 'hǔ' }, { char: '可', pinyin: 'kě' },
+    ];
 
 
     const STORAGE_PREFIX = `quiz_${quiz_name}_`;
@@ -718,7 +718,7 @@
     const toast = document.getElementById('toast');
     const soundToggle = document.getElementById('soundToggle');
 
-    // 狀態
+    // 状态
     const TOTAL_QUESTIONS = CHARACTERS.length;
     let studentName = '';
     let score = 0;
@@ -731,7 +731,7 @@
     let isSendingEmail = false;
 
     // --------------------------------------------------------------
-    // 音效系統
+    // 音效系统
     // --------------------------------------------------------------
     let audioContext = null;
 
@@ -798,11 +798,11 @@
       if (soundEnabled) {
         soundToggle.textContent = '🔊';
         soundToggle.classList.remove('muted');
-        soundToggle.title = '音效開啟 (點擊靜音)';
+        soundToggle.title = '音效开启 (点击静音)';
       } else {
         soundToggle.textContent = '🔇';
         soundToggle.classList.add('muted');
-        soundToggle.title = '音效關閉 (點擊開啟)';
+        soundToggle.title = '音效关闭 (点击开启)';
       }
     }
 
@@ -841,7 +841,7 @@
     }
 
     // --------------------------------------------------------------
-    // 儲存 / 讀取 / 刪除進度
+    // 储存 / 读取 / 删除进度
     // --------------------------------------------------------------
     function saveProgress() {
       if (!studentName) return;
@@ -918,7 +918,7 @@
         if (studentName === session.name) tag.classList.add('active');
 
         const label = document.createElement('span');
-        label.textContent = `${session.name} (${session.score}分 / 剩${session.remaining}題)`;
+        label.textContent = `${session.name} (${session.score}分 / 剩${session.remaining}题)`;
         label.addEventListener('click', (e) => {
           e.stopPropagation();
           studentNameInput.value = session.name;
@@ -929,10 +929,10 @@
         const del = document.createElement('span');
         del.className = 'delete-session';
         del.textContent = '✕';
-        del.title = '刪除此進度';
+        del.title = '删除此进度';
         del.addEventListener('click', (e) => {
           e.stopPropagation();
-          if (confirm(`確定要刪除「${session.name}」的儲存進度嗎？`)) {
+          if (confirm(`确定要删除「${session.name}」的储存进度吗？`)) {
             deleteProgress(session.name);
             if (studentName === session.name) {
               studentName = '';
@@ -967,22 +967,22 @@
     }
 
     // --------------------------------------------------------------
-    // EmailJS 寄送成績
+    // EmailJS 寄送成绩
     // --------------------------------------------------------------
     function sendResultEmail(fromFloating = false) {
       if (isSendingEmail) {
-        showToast('⏳ 正在寄送中，請稍候...', 'info');
+        showToast('⏳ 正在寄送中，请稍候...', 'info');
         return;
       }
 
       if (!studentName || !studentName.trim()) {
-        showToast('⚠️ 請先輸入學生姓名，才能寄送成績。', 'info');
+        showToast('⚠️ 请先输入学生姓名，才能寄送成绩。', 'info');
         return;
       }
 
-      // 檢查 EmailJS 是否可用
+      // 检查 EmailJS 是否可用
       if (typeof emailjs === 'undefined') {
-        showToast('⚠️ EmailJS 未載入，請檢查網路連線。', 'error');
+        showToast('⚠️ EmailJS 未载入，请检查网路连线。', 'error');
         return;
       }
 
@@ -992,35 +992,27 @@
 
       let status;
       if (quizActive) {
-        status = '進行中 (暫停/中斷)';
+        status = '进行中 (暂停/中断)';
       } else if (remaining === 0) {
         status = '已完成';
       } else {
         status = '已停止 (未完成)';
       }
 
-      // 建立完整的訊息內容
+      // 建立完整的讯息内容
       const messageBody = [
-        `測驗名：${quiz_name}`,
-        `學生姓名：${studentName}`,
+        `测验名：${quiz_name}`,
+        `学生姓名：${studentName}`,
         '',
-        '--- 詳細進度 ---',
-        `測驗狀態：${status}`,
+        '--- 详细进度 ---',
+        `测验状态：${status}`,
         `目前得分：${score} 分`,
-        `已答對題數：${score} 題`,
-        `尚未完成題數：${remaining} 題`,
-        // `答題正確率：${percentage}%`,
-        `寄送時間：${new Date().toLocaleString('zh-TW')}`,
-        // '',
-        // '--- 詳細進度 ---',
-        // `• 初始題庫：100 題`,
-        // `• 已答對：${score} 題`,
-        // `• 剩餘隊列：${remaining} 題`,
-        // '',
-        // '(此郵件由漢字讀音測驗系統自動產生)'
+        `已答对题数：${score} 题`,
+        `尚未完成题数：${remaining} 题`,
+        `寄送时间：${new Date().toLocaleString('zh-TW')}`,
       ].join('\n');
 
-      // EmailJS 模板參數 (請確認您的 EmailJS 模板中使用這些變數名稱)
+      // EmailJS 模板参数 (请确认您的 EmailJS 模板中使用这些变数名称)
       const templateParams = {
         quiz_name: quiz_name,
         student_name: studentName,
@@ -1032,7 +1024,7 @@
         message: messageBody,
       };
 
-      // 設定按鈕 loading 狀態
+      // 设定按钮 loading 状态
       isSendingEmail = true;
       const targetBtn = fromFloating ? floatingEmailBtn : sendEmailDuringQuizBtn;
       const originalText = targetBtn.textContent;
@@ -1048,20 +1040,20 @@
       emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, templateParams)
         .then(function(response) {
           console.log('EmailJS 成功:', response.status, response.text);
-          showToast(`✅ 成績已成功寄送給老師！（${studentName}）`, 'success', 4000);
+          showToast(`✅ 成绩已成功寄送给老师！（${studentName}）`, 'success', 4000);
         })
         .catch(function(error) {
-          console.error('EmailJS 錯誤:', error);
-          let errorMsg = '寄送失敗';
+          console.error('EmailJS 错误:', error);
+          let errorMsg = '寄送失败';
           if (error && error.text) {
             errorMsg += '：' + error.text;
           } else if (error && error.message) {
             errorMsg += '：' + error.message;
           }
-          showToast(`❌ ${errorMsg}。請稍後再試。`, 'error', 5000);
+          showToast(`❌ ${errorMsg}。请稍后再试。`, 'error', 5000);
         })
         .finally(function() {
-          // 恢復按鈕狀態
+          // 恢复按钮状态
           isSendingEmail = false;
           if (fromFloating) {
             floatingEmailBtn.disabled = false;
@@ -1074,7 +1066,7 @@
     }
 
     // --------------------------------------------------------------
-    // 初始畫面
+    // 初始画面
     // --------------------------------------------------------------
     function resetToSetup() {
       quizPanel.classList.add('hidden');
@@ -1087,7 +1079,7 @@
       score = 0;
       resumeBadge.classList.add('hidden');
       updateScoreAndProgress();
-      feedbackMessage.innerHTML = '<span>✨ 選一個注音吧</span>';
+      feedbackMessage.innerHTML = '<span>✨ 选一个拼音吧</span>';
       feedbackMessage.className = 'feedback-area';
       currentCharDisplay.textContent = '一';
       optionsContainer.innerHTML = '';
@@ -1106,22 +1098,22 @@
     function updateScoreAndProgress() {
       scoreDisplay.textContent = `得分：${score}`;
       const remaining = getRemainingQuestions();
-      progressDisplay.textContent = `剩餘：${remaining} 題`;
+      progressDisplay.textContent = `剩余：${remaining} 题`;
     }
 
     // --------------------------------------------------------------
-    // 開始新測驗
+    // 开始新测验
     // --------------------------------------------------------------
     function startNewQuiz() {
       const name = studentNameInput.value.trim();
       if (!name) {
-        alert('請輸入姓名，再開始測驗。');
+        alert('请输入姓名，再开始测验。');
         return;
       }
 
       const existing = loadProgress(name);
       if (existing) {
-        if (!confirm(`「${name}」已有儲存的進度（得分 ${existing.score}，剩餘 ${getRemainingQuestions(existing.score || 0)} 題）。\n\n按「確定」會開始新測驗並覆蓋舊進度。\n按「取消」則載入舊進度。`)) {
+        if (!confirm(`「${name}」已有储存的进度（得分 ${existing.score}，剩余 ${getRemainingQuestions(existing.score || 0)} 题）。\n\n按「确定」会开始新测验并覆盖旧进度。\n按「取消」则载入旧进度。`)) {
           resumeQuiz(name);
           return;
         }
@@ -1154,12 +1146,12 @@
     }
 
     // --------------------------------------------------------------
-    // 恢復測驗
+    // 恢复测验
     // --------------------------------------------------------------
     function resumeQuiz(name) {
       const state = loadProgress(name);
       if (!state) {
-        alert('找不到儲存的進度。');
+        alert('找不到储存的进度。');
         return;
       }
 
@@ -1169,12 +1161,12 @@
       currentQuestion = state.currentQuestion || null;
       answered = state.answered || false;
 
-      if (currentQuestion && (!currentQuestion.char || !currentQuestion.zhuyin)) {
+      if (currentQuestion && (!currentQuestion.char || !currentQuestion.pinyin)) {
         currentQuestion = null;
       }
 
       if (questionQueue.length === 0 && !currentQuestion) {
-        if (confirm('此進度已完成所有題目，是否查看成績？')) {
+        if (confirm('此进度已完成所有题目，是否查看成绩？')) {
           studentNameInput.value = studentName;
           finishQuiz(true);
         }
@@ -1201,7 +1193,7 @@
     }
 
     // --------------------------------------------------------------
-    // 渲染當前題目
+    // 渲染当前题目
     // --------------------------------------------------------------
     function renderCurrentQuestion(alreadyAnswered) {
       if (!currentQuestion) return;
@@ -1211,30 +1203,30 @@
       feedbackMessage.innerHTML = '';
       nextBtn.disabled = !alreadyAnswered;
 
-      const correctZhuyin = currentQuestion.zhuyin;
+      const correctPinyin = currentQuestion.pinyin;
       const distractorPool = CHARACTERS
-        .map(item => item.zhuyin)
-        .filter(z => z !== correctZhuyin);
+        .map(item => item.pinyin)
+        .filter(z => z !== correctPinyin);
       const uniqueDistractors = [...new Set(distractorPool)];
       const shuffled = [...uniqueDistractors].sort(() => Math.random() - 0.5);
       const selectedDistractors = shuffled.slice(0, 3);
       while (selectedDistractors.length < 3) {
-        selectedDistractors.push('ㄅ');
+        selectedDistractors.push('bā');
       }
 
-      const options = [correctZhuyin, ...selectedDistractors];
+      const options = [correctPinyin, ...selectedDistractors];
       for (let i = options.length - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1));
         [options[i], options[j]] = [options[j], options[i]];
       }
 
       optionButtons = [];
-      options.forEach((zhuyin) => {
+      options.forEach((pinyin) => {
         const btn = document.createElement('button');
         btn.className = 'option-btn';
-        btn.textContent = zhuyin;
-        btn.dataset.zhuyin = zhuyin;
-        btn.addEventListener('click', () => onOptionClick(zhuyin));
+        btn.textContent = pinyin;
+        btn.dataset.pinyin = pinyin;
+        btn.addEventListener('click', () => onOptionClick(pinyin));
         optionsContainer.appendChild(btn);
         optionButtons.push(btn);
       });
@@ -1242,27 +1234,27 @@
       if (alreadyAnswered) {
         optionButtons.forEach(btn => {
           btn.disabled = true;
-          if (btn.dataset.zhuyin === correctZhuyin) {
+          if (btn.dataset.pinyin === correctPinyin) {
             btn.classList.add('reveal-correct');
           }
         });
-        feedbackMessage.innerHTML = `<span class="feedback-icon">⏸️</span> 此題已作答，正確讀音是 ${correctZhuyin}。請按「下一題」繼續。`;
+        feedbackMessage.innerHTML = `<span class="feedback-icon">⏸️</span> 此题已作答，正确读音是 ${correctPinyin}。请按「下一题」继续。`;
         feedbackMessage.className = 'feedback-area';
         nextBtn.disabled = false;
       } else {
-        feedbackMessage.innerHTML = '<span>✨ 選一個注音吧</span>';
+        feedbackMessage.innerHTML = '<span>✨ 选一个拼音吧</span>';
         feedbackMessage.className = 'feedback-area';
       }
     }
 
     // --------------------------------------------------------------
-    // 載入下一題
+    // 载入下一题
     // --------------------------------------------------------------
     function loadNextQuestion() {
       if (!quizActive) return;
 
       optionsContainer.innerHTML = '';
-      feedbackMessage.innerHTML = '<span>✨ 選一個注音吧</span>';
+      feedbackMessage.innerHTML = '<span>✨ 选一个拼音吧</span>';
       feedbackMessage.className = 'feedback-area';
       nextBtn.disabled = true;
       answered = false;
@@ -1280,24 +1272,24 @@
     }
 
     // --------------------------------------------------------------
-    // 選項點擊
+    // 选项点击
     // --------------------------------------------------------------
-    function onOptionClick(selectedZhuyin) {
+    function onOptionClick(selectedPinyin) {
       if (!quizActive || answered || !currentQuestion) return;
       answered = true;
 
-      const correctZhuyin = currentQuestion.zhuyin;
-      const isCorrect = (selectedZhuyin === correctZhuyin);
+      const correctPinyin = currentQuestion.pinyin;
+      const isCorrect = (selectedPinyin === correctPinyin);
 
       optionButtons.forEach(btn => {
         btn.disabled = true;
-        if (btn.dataset.zhuyin === correctZhuyin) {
+        if (btn.dataset.pinyin === correctPinyin) {
           btn.classList.add('reveal-correct');
         }
       });
 
       optionButtons.forEach(btn => {
-        if (btn.dataset.zhuyin === selectedZhuyin) {
+        if (btn.dataset.pinyin === selectedPinyin) {
           if (isCorrect) {
             btn.classList.add('correct-guess');
           } else {
@@ -1309,11 +1301,11 @@
       if (isCorrect) {
         playCheerfulSound();
         score++;
-        feedbackMessage.innerHTML = `<span class="feedback-icon">✅</span> 正確！「${currentQuestion.char}」讀作 ${correctZhuyin}`;
+        feedbackMessage.innerHTML = `<span class="feedback-icon">✅</span> 正确！「${currentQuestion.char}」读作 ${correctPinyin}`;
         feedbackMessage.className = 'feedback-area feedback-correct';
       } else {
         playSadSound();
-        feedbackMessage.innerHTML = `<span class="feedback-icon">❌</span> 不對哦～「${currentQuestion.char}」正確讀音是 ${correctZhuyin}。此字會再出現。`;
+        feedbackMessage.innerHTML = `<span class="feedback-icon">❌</span> 不对哦～「${currentQuestion.char}」正确读音是 ${correctPinyin}。此字会再出现。`;
         feedbackMessage.className = 'feedback-area feedback-wrong';
         if (currentQuestion) {
           questionQueue.push({ ...currentQuestion });
@@ -1326,7 +1318,7 @@
     }
 
     // --------------------------------------------------------------
-    // 下一題
+    // 下一题
     // --------------------------------------------------------------
     function goToNextQuestion() {
       if (!quizActive) return;
@@ -1353,8 +1345,8 @@
 
       const remaining = getRemainingQuestions();
       emailHint.innerHTML = completed
-        ? `🎉 測驗完成！得分：${score} / ${TOTAL_QUESTIONS} (剩餘未答：${remaining})`
-        : `⏸️ 測驗已停止。得分：${score}，尚未完成的題數：${remaining}`;
+        ? `🎉 测验完成！得分：${score} / ${TOTAL_QUESTIONS} (剩余未答：${remaining})`
+        : `⏸️ 测验已停止。得分：${score}，尚未完成的题数：${remaining}`;
 
       if (completed) {
         deleteProgress(studentName);
@@ -1365,7 +1357,7 @@
 
     function stopQuiz() {
       if (!quizActive) return;
-      if (confirm('確定要停止測驗嗎？目前成績與進度將會儲存，下次可恢復。')) {
+      if (confirm('确定要停止测验吗？目前成绩与进度将会储存，下次可恢复。')) {
         saveProgress();
         quizActive = false;
         quizPanel.classList.add('hidden');
@@ -1373,14 +1365,14 @@
         setupPanel.classList.add('hidden');
 
         const remaining = getRemainingQuestions();
-        emailHint.innerHTML = `⏸️ 測驗已停止。得分：${score}，尚未完成的題數：${remaining}。進度已儲存，下次可恢復。`;
+        emailHint.innerHTML = `⏸️ 测验已停止。得分：${score}，尚未完成的题数：${remaining}。进度已储存，下次可恢复。`;
         updateSavedSessionsList();
         updateFloatingEmailButton();
       }
     }
 
     // --------------------------------------------------------------
-    // 重新測驗
+    // 重新测验
     // --------------------------------------------------------------
     function restartQuiz() {
       resetToSetup();
@@ -1392,13 +1384,13 @@
     }
 
     // --------------------------------------------------------------
-    // 事件綁定
+    // 事件绑定
     // --------------------------------------------------------------
     startQuizBtn.addEventListener('click', startNewQuiz);
     resumeQuizBtn.addEventListener('click', () => {
       const name = studentNameInput.value.trim();
       if (!name) {
-        alert('請先輸入姓名。');
+        alert('请先输入姓名。');
         return;
       }
       resumeQuiz(name);
@@ -1429,7 +1421,7 @@
         if (!name) return;
         const existing = loadProgress(name);
         if (existing && !quizActive) {
-          if (confirm(`「${name}」已有儲存的進度（得分 ${existing.score}，剩餘 ${getRemainingQuestions(existing.score || 0)} 題）。\n\n按「確定」恢復進度。\n按「取消」開始新測驗（會覆蓋舊進度）。`)) {
+          if (confirm(`「${name}」已有储存的进度（得分 ${existing.score}，剩余 ${getRemainingQuestions(existing.score || 0)} 题）。\n\n按「确定」恢复进度。\n按「取消」开始新测验（会覆盖旧进度）。`)) {
             resumeQuiz(name);
             return;
           }
@@ -1443,14 +1435,14 @@
     updateSavedSessionsList();
     updateSoundToggleUI();
 
-    // 頁面卸載前保存
+    // 页面卸载前保存
     window.addEventListener('beforeunload', () => {
       if (quizActive && studentName) {
         saveProgress();
       }
     });
 
-    // 定時自動保存
+    // 定时自动保存
     setInterval(() => {
       if (quizActive && studentName) {
         saveProgress();
